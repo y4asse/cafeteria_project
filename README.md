@@ -16,7 +16,7 @@ git clone https://github.com/reomin/cafeteria_project.git
 - Node.js
 - npm
 - Docker
-- Sequel pro(データベースを GUI で確認するためのアプリケーション)
+- Sequel ace(データベースを GUI で確認するためのアプリケーション mac専用)
 
 ### インストール
 
@@ -30,10 +30,23 @@ git clone https://github.com/reomin/cafeteria_project.git
 
 2. Docker での実行
 
+   docker-compose.ymlの中身
+   * M1 macbookのみ以下を追加する
+   ```shell
+     db:
+    platform: linux/x86_64 //m1 macbookのみに追加
+    image: mysql:5.7
+    container_name: db_container
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+   ```
+
    ルートディレクトリで以下を実行
    ```shell
    docker-compose up -d
    ```
+
 
 ### 動作確認
 
