@@ -15,6 +15,8 @@ git clone https://github.com/reomin/cafeteria_project.git
 
 - Node.js
 - npm
+- Next.js
+- Nest.js
 - Docker
 - Sequel ace(データベースを GUI で確認するためのアプリケーション mac専用)
 
@@ -50,8 +52,10 @@ git clone https://github.com/reomin/cafeteria_project.git
 
 ### 動作確認
 
-*http://localhost:3000/ にアクセスして、「Hello World!」の文字が確認できたらバックエンド編は完了.
-*http://localhost:4444/ にアクセスして Next.js の画面が確認できたらフロントエンドは完了.
+http://localhost:3000/ にアクセスして、「Hello World!」の文字が確認できたらバックエンド編は完了.
+
+http://localhost:4444/ にアクセスして Next.js の画面が確認できたらフロントエンドは完了.
+
 
 Sequel Ace で下記の情報でログインできるかを確認
 
