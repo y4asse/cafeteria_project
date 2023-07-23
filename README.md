@@ -16,6 +16,7 @@ git clone https://github.com/reomin/cafeteria_project.git
 - Node.js
 - npm
 - Next.js
+  -chakura-ui
 - Nest.js
 - Docker
 - Sequel ace(データベースを GUI で確認するためのアプリケーション mac専用)
