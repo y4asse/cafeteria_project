@@ -1,19 +1,16 @@
 import '../styles/style.css';
-import Layout from './layout'; // layout.tsxをインポート
+import Layout from './layout'; 
 
+//メインページ
 
 export default function Home() {
     return (
       <Layout>
       <div>
-        <ul>
-          <li>記事1</li>
-          <li>記事2</li>
-          <li>記事3</li>
-        </ul>
+       <h1>ホームページが入ります</h1>
       </div>
 
       </Layout>
 
     )
-  }
+}
