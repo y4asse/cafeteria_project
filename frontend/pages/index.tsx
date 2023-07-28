@@ -6,7 +6,7 @@ import Layout from './layout';
 export default function Home() {
     return (
       <Layout>
-      <div>
+      <div className='contents'>
        <h1>ホームページが入ります</h1>
       </div>
 

@@ -2,6 +2,7 @@ import { Box, Flex, Heading, Button } from "./Common";
 import NextLink from "next/link";
 import "../styles/header.css";
 
+console.log("Have a good day 😄");
 export default function Header() {
   return (
     <header className="header_body">
@@ -16,6 +17,7 @@ export default function Header() {
             borderStyle="solid"
             borderColor="gray.200"
             align="center"
+            backgroundColor="#FBCF86"
         >
             <Flex flex={1} justify="space-between" maxW="5xl" mx="auto">
             <Heading as="h1" size="lg">
