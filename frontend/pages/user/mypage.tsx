@@ -1,13 +1,19 @@
 //user登録ページ
 import Layout from '../layout';
-import NextLink from 'next/link';
-import {Button, Flex, Heading, Input} from '@chakra-ui/react';
-import {signOut} from 'next-auth/react';
+import {Button} from '@chakra-ui/react';
+import {signOut, useSession} from 'next-auth/react';
 
 export default function Mypage() {
+  const {data: session} = useSession();
   return (
     <Layout>
       <div>
+        <div>{session?.user.name}</div>
+        <div>{session?.user.email}</div>
+        <div>{session?.user.image}</div>
+        <div>{session?.expires}</div>
+        {/* 画像を表示 */}
+
         <Button
           fontSize="sm"
           fontWeight={600}
