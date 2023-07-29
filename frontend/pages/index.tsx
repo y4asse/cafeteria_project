@@ -1,4 +1,4 @@
-import '../styles/style.css';
+// import '../styles/style.css';
 import Layout from './layout';
 
 //メインページ
@@ -6,7 +6,7 @@ import Layout from './layout';
 export default function Home() {
   return (
     <Layout>
-      <div className="contents">
+      <div className=" text-center justify-center">
         <h1>ホームページが入ります</h1>
       </div>
     </Layout>

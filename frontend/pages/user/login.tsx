@@ -2,6 +2,7 @@
 import Layout from '../layout';
 import NextLink from 'next/link';
 import {Button, Flex, Heading, Input} from '@chakra-ui/react';
+import {useSession, signIn, signOut} from 'next-auth/react';
 
 export default function Login() {
   return (
@@ -21,10 +22,19 @@ export default function Login() {
             mb={6}
             type="password"
           />
-          <Button bg="orange.400" colorScheme="teal">
+          <Button bg="orange.400" colorScheme="teal" onClick={() => signIn()}>
             Log in
           </Button>
-          <NextLink href="/user/register">新規追加はこちら</NextLink>
+          <NextLink href="/user/register" className="mb-5">
+            新規追加はこちら
+          </NextLink>
+          <hr></hr>
+          <button onClick={() => signIn('github', {callbackUrl: '/'})}>
+            Sign in with GitHub
+          </button>
+          <button onClick={() => signIn('google', {callbackUrl: '/'})}>
+            Sign in with Google
+          </button>
         </Flex>
       </Flex>
     </Layout>

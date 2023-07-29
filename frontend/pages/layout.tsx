@@ -1,6 +1,4 @@
 import React, {ReactNode} from 'react';
-import '../styles/style.css';
-import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {ChakraProvider} from '@chakra-ui/react';
@@ -11,7 +9,14 @@ interface LayoutProps {
 // それぞれのページの共有部分
 const Layout: React.FC<LayoutProps> = ({children}) => {
   return (
-    <div className="container">
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateRows: 'auto 1fr auto',
+        gridTemplateColumns: '100%',
+        minHeight: '100vh',
+      }}
+    >
       <ChakraProvider>
         <Header />
         {children}
