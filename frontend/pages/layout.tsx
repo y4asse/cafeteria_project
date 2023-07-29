@@ -1,4 +1,5 @@
-import React, {ReactNode} from 'react';
+import React, { ReactNode } from 'react';
+import '../styles/style.css';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -10,13 +11,13 @@ interface LayoutProps {
 // それぞれのページの共有部分
 const Layout: React.FC<LayoutProps> = ({children}) => {
   return (
-    <div>
-      <ChakraProvider>
-        <Header />
+    <div className="container">
+       <ChakraProvider>
+        <Header/>
         {children}
-        {/* <Footer/> */}
-      </ChakraProvider>
-    </div>
+        <Footer/>
+       </ChakraProvider>
+  </div>
   );
 };
 
