@@ -1,16 +1,14 @@
 import '../styles/style.css';
-import Layout from './layout'; 
+import Layout from './layout';
 
 //メインページ
 
 export default function Home() {
-    return (
-      <Layout>
+  return (
+    <Layout>
       <div>
-       <h1>ホームページが入ります</h1>
+        <h1>ホームページが入ります</h1>
       </div>
-
-      </Layout>
-
-    )
+    </Layout>
+  );
 }
