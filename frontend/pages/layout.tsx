@@ -15,7 +15,8 @@ const Layout: React.FC<LayoutProps> = ({children}) => {
         gridTemplateRows: 'auto 1fr auto',
         gridTemplateColumns: '100%',
         minHeight: '100vh',
-      }}>
+      }}
+    >
       <ChakraProvider>
         <Header />
         {children}
