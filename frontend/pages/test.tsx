@@ -46,7 +46,8 @@ export default function UploadImage() {
       <button
         className="btn btn-primary"
         type="submit"
-        onClick={uploadToServer}>
+        onClick={uploadToServer}
+      >
         Send to server
       </button>
     </div>
