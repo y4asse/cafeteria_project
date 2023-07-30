@@ -11,8 +11,8 @@ export default function Header() {
   const [isShowProfile, setIsShowProfile] = useState(false);
   const toggleIsShowProfile = () => setIsShowProfile(!isShowProfile);
   const myprofileDropdownList = [
-    {title: 'マイページ', link: '/user/mypage'},
-    {title: 'ログアウト', link: '/user/logout'},
+    {title: 'mypage', link: '/user/mypage'},
+    {title: 'signout', link: '/user/signout'},
   ];
 
   //ドロップダウンを閉じる
