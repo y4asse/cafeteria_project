@@ -1,13 +1,14 @@
 import React, {ReactNode} from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {ChakraProvider} from '@chakra-ui/react';
+import Header from '@/components/Header';
 interface LayoutProps {
   children: ReactNode;
 }
 
 // それぞれのページの共有部分
 const Layout: React.FC<LayoutProps> = ({children}) => {
+  const MemoizedHeader = React.memo(Header);
   return (
     <div
       style={{
@@ -18,7 +19,7 @@ const Layout: React.FC<LayoutProps> = ({children}) => {
       }}
     >
       <ChakraProvider>
-        <Header />
+        <MemoizedHeader />
         {children}
         <Footer />
       </ChakraProvider>
