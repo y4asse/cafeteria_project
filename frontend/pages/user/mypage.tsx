@@ -7,7 +7,7 @@ export default function Mypage() {
   const {data: session} = useSession();
   return (
     <Layout>
-      <div>
+      <div className="">
         <div>{session?.user.name}</div>
         <div>{session?.user.email}</div>
         <div>{session?.user.image}</div>
@@ -22,8 +22,7 @@ export default function Mypage() {
           onClick={() => signOut()}
           _hover={{
             bg: 'orange.300',
-          }}
-        >
+          }}>
           サインアウト
         </Button>
       </div>
