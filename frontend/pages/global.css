@@ -1,3 +1,68 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/*
+右から左へ
+----------------------------*/
+@keyframes infinity-scroll-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  /*
+  左から右へ
+  ----------------------------*/
+  @keyframes infinity-scroll-right {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+  /*
+  IE11対策
+  ----------------------------*/
+  _:-ms-lang(x)::-ms-backdrop,
+  .d-demo {
+    display: -ms-grid;
+    overflow: hidden;
+  }
+  /*----------------------------*/
+  .d-demo__wrap {
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .d-demo__list {
+    display: flex;
+    list-style: none;
+  }
+  
+  .d-demo__list--left{
+  animation :infinity-scroll-left 150s infinite linear 0.6s both;
+  }
+  .d-demo__list--right{
+  animation :infinity-scroll-right 150s infinite linear 0.6s both;
+  }
+  
+  .d-demo__item {
+    width: calc(100vw / 5);
+  }
+  .d-demo__item > img{
+     width: 100%;
+  }
+  
+  /*
+  マウスオーバーで一時停止させたい場合は以下
+  ----------------------------*/
+  
+  .d-demo__wrap:hover .d-demo__list--left {
+    animation-play-state: paused;
+  }

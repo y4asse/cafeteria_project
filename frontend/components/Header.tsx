@@ -63,7 +63,8 @@ export default function Header() {
                   <div className="flex-col absolute top-full w-28 mt-2 bg-amber-100 text-center rounded-xl shadow-xl">
                     {myprofileDropdownList.map((list, index) => {
                       return (
-                        <div className=" hover:text-gray-400 py-1">
+                        // indexを追加
+                        <div className="hover:text-gray-400 py-1" key={index}>
                           <Link prefetch={true} href={list.link}>
                             {list.title}
                           </Link>
