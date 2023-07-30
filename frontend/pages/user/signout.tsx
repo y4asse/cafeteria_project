@@ -15,7 +15,8 @@ const Logout = () => {
             bg="orange.400"
             colorScheme="teal"
             onClick={() => signOut({callbackUrl: '/'})}
-            margin={5}>
+            margin={5}
+          >
             Sign out
           </Button>
         </Flex>

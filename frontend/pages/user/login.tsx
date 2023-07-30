@@ -36,7 +36,8 @@ export default function Login() {
             onClick={() => signIn('github', {callbackUrl: '/'})}
             bg="orange.400"
             colorScheme="teal"
-            className="mb-1">
+            className="mb-1"
+          >
             <Image
               src={`/icons/github.svg`}
               width={24}
@@ -49,7 +50,8 @@ export default function Login() {
           <Button
             onClick={() => signIn('google', {callbackUrl: '/'})}
             bg="orange.400"
-            colorScheme="teal">
+            colorScheme="teal"
+          >
             <Image
               src={`/icons/google.svg`}
               width={24}
