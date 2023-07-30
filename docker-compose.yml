@@ -7,7 +7,7 @@ services:
       dockerfile: ./frontend/Dockerfile
     container_name: app_container
     ports:
-      - "4444:3000"
+      - "4444:4444"
     volumes:
       - ./frontend:/app
     command: sh -c "npm install && npm run dev"
