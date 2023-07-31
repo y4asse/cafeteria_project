@@ -9,10 +9,9 @@ export default function Post() {
   const {data: session} = useSession();
   return (
     <Layout>
-        <div>
-            <Form1/>            
-        </div>
-      
+      <div>
+        <Form1 />
+      </div>
     </Layout>
   );
 }

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import {useState} from 'react';
 import {
   Progress,
   Box,
@@ -19,13 +19,13 @@ import {
   Textarea,
   FormHelperText,
   InputRightElement,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
-import { useToast } from '@chakra-ui/react'
+import {useToast} from '@chakra-ui/react';
 
 const Form1 = () => {
-  const [show, setShow] = useState(false)
-  const handleClick = () => setShow(!show)
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
   return (
     <>
       <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%">
@@ -38,8 +38,6 @@ const Form1 = () => {
           </FormLabel>
           <Input id="title" placeholder="タイトル" />
         </FormControl>
-        
-
       </Flex>
       <FormControl mt="2%">
         <FormLabel htmlFor="contents" fontWeight={'normal'}>
@@ -56,21 +54,17 @@ const Form1 = () => {
       </FormControl>
 
       <FormControl mt="2%">
-        <FormLabel>
-          投稿写真
-        </FormLabel>
+        <FormLabel>投稿写真</FormLabel>
         <Input id="file" type="file" />
       </FormControl>
-
     </>
-  )
-}
-
+  );
+};
 
 export default function Multistep() {
-  const toast = useToast()
-  const [step, setStep] = useState(1)
-  const [progress, setProgress] = useState(33.33)
+  const toast = useToast();
+  const [step, setStep] = useState(1);
+  const [progress, setProgress] = useState(33.33);
 
   return (
     <>
@@ -81,17 +75,18 @@ export default function Multistep() {
         maxWidth={800}
         p={6}
         m="10px auto"
-        as="form">
-       <Form1/>
+        as="form"
+      >
+        <Form1 />
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
             <Flex>
               <Button
                 w="7rem"
-                onClick={() => {
-                }}
+                onClick={() => {}}
                 colorScheme="teal"
-                variant="outline">
+                variant="outline"
+              >
                 投稿する
               </Button>
             </Flex>
@@ -107,8 +102,9 @@ export default function Multistep() {
                     status: 'success',
                     duration: 3000,
                     isClosable: true,
-                  })
-                }}>
+                  });
+                }}
+              >
                 Submit
               </Button>
             ) : null}
@@ -116,5 +112,5 @@ export default function Multistep() {
         </ButtonGroup>
       </Box>
     </>
-  )
+  );
 }

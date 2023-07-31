@@ -48,9 +48,9 @@ export default function Header() {
 
             {/* ログインボタンとマイページボタンを作る */}
             {session ? (
-            <div  className="flex gap-1 items-center relative">
-              <div className='mx-10'>
-                <Button
+              <div className="flex gap-1 items-center relative">
+                <div className="mx-10">
+                  <Button
                     as={NextLink}
                     fontSize="sm"
                     fontWeight={600}
@@ -58,39 +58,39 @@ export default function Header() {
                     bg="orange.400"
                     href="/user/manage/post"
                     _hover={{
-                    bg: 'orange.300',
+                      bg: 'orange.300',
                     }}
-                >
+                  >
                     投稿する
-                </Button>
+                  </Button>
+                </div>
+                <div className="flex gap-1 items-center relative">
+                  <button onClick={toggleIsShowProfile}>
+                    <img
+                      src={session.user.image!}
+                      alt="profile-img"
+                      className="w-10 h-10 rounded-full"
+                    />
+                  </button>
+                  <button onClick={toggleIsShowProfile}>
+                    <ChevronDownIcon className=" text-2xl" />
+                  </button>
+                  {isShowProfile && (
+                    <div className="flex-col absolute top-full w-28 mt-2 bg-amber-100 text-center rounded-xl shadow-xl">
+                      {myprofileDropdownList.map((list, index) => {
+                        return (
+                          // indexを追加
+                          <div className="hover:text-gray-400 py-1" key={index}>
+                            <Link prefetch={true} href={list.link}>
+                              {list.title}
+                            </Link>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="flex gap-1 items-center relative">
-                <button onClick={toggleIsShowProfile}>
-                  <img
-                    src={session.user.image!}
-                    alt="profile-img"
-                    className="w-10 h-10 rounded-full"
-                  />
-                </button>
-                <button onClick={toggleIsShowProfile}>
-                  <ChevronDownIcon className=" text-2xl" />
-                </button>
-                {isShowProfile && (
-                  <div className="flex-col absolute top-full w-28 mt-2 bg-amber-100 text-center rounded-xl shadow-xl">
-                    {myprofileDropdownList.map((list, index) => {
-                      return (
-                        // indexを追加
-                        <div className="hover:text-gray-400 py-1" key={index}>
-                          <Link prefetch={true} href={list.link}>
-                            {list.title}
-                          </Link>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            </div>
             ) : (
               <Button
                 as={NextLink}
