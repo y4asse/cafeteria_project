@@ -48,6 +48,22 @@ export default function Header() {
 
             {/* ログインボタンとマイページボタンを作る */}
             {session ? (
+            <div  className="flex gap-1 items-center relative">
+              <div className='mx-10'>
+                <Button
+                    as={NextLink}
+                    fontSize="sm"
+                    fontWeight={600}
+                    color="white"
+                    bg="orange.400"
+                    href="/user/manage/post"
+                    _hover={{
+                    bg: 'orange.300',
+                    }}
+                >
+                    投稿する
+                </Button>
+              </div>
               <div className="flex gap-1 items-center relative">
                 <button onClick={toggleIsShowProfile}>
                   <img
@@ -74,6 +90,7 @@ export default function Header() {
                   </div>
                 )}
               </div>
+            </div>
             ) : (
               <Button
                 as={NextLink}
