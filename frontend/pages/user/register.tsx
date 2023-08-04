@@ -31,7 +31,9 @@ export default function Login() {
           <Button bg="orange.400" colorScheme="teal">
             Log in
           </Button>
-          <NextLink href="/user/login">ログインはこちら</NextLink>
+          <NextLink href="/user/login" className="text-center mt-3">
+            ログインはこちら
+          </NextLink>
         </Flex>
       </Flex>
     </Layout>

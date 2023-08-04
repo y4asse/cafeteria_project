@@ -8,6 +8,7 @@ import Link from 'next/link';
 console.log('Have a good day 😄');
 export default function Header() {
   const {data: session, status} = useSession();
+  console.log(session);
   const [isShowProfile, setIsShowProfile] = useState(false);
   const toggleIsShowProfile = () => setIsShowProfile(!isShowProfile);
   const myprofileDropdownList = [

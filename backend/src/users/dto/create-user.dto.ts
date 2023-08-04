@@ -15,5 +15,16 @@ export class CreateUserDto {
   @IsString()
   @MinLength(8)
   @MaxLength(64)
+  @IsNotEmpty()
   password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  username: string;
+
+  @IsString()
+  university: string;
+
+  @IsString()
+  profileImageUrl: string;
 }
