@@ -41,7 +41,8 @@ export default function Header() {
           borderStyle="solid"
           borderColor="gray.200"
           align="center"
-          backgroundColor="#FBCF86">
+          backgroundColor="#FBCF86"
+        >
           <Flex flex={1} justify="space-between" maxW="5xl" mx="auto">
             <Heading as="h1" size="lg">
               <NextLink href="/">Cafeteria_Database</NextLink>
@@ -60,7 +61,8 @@ export default function Header() {
                     href="/user/manage/post"
                     _hover={{
                       bg: 'orange.300',
-                    }}>
+                    }}
+                  >
                     投稿する
                   </Button>
                 </div>
@@ -105,7 +107,8 @@ export default function Header() {
                 href="/user/login"
                 _hover={{
                   bg: 'orange.300',
-                }}>
+                }}
+              >
                 ログイン
               </Button>
             )}
