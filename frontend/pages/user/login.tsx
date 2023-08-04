@@ -1,9 +1,17 @@
 //ログインページ
 import Layout from '../layout';
 import NextLink from 'next/link';
-import {Button, Center, Flex, Heading, Input} from '@chakra-ui/react';
+import {
+  Button,
+  Center,
+  Flex,
+  FormLabel,
+  Heading,
+  Input,
+} from '@chakra-ui/react';
 import {signIn} from 'next-auth/react';
 import {useState} from 'react';
+import {FaEye, FaEyeSlash} from 'react-icons/fa';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -46,32 +54,62 @@ export default function Login() {
       });
     }
   };
+  const [isRevealPassword, setIsRevealPassword] = useState(false);
   return (
     <Layout>
       <Flex height="70vh" alignItems="center" justifyContent="center" mt={10}>
         <Flex direction="column" background="#FFFFEE" padding={12} rounded={6}>
           <Heading mb={6} textAlign="center">
-            Log in
+            ログイン
           </Heading>
-          <Input
-            placeholder="sample@sample.com"
-            variant="filled"
-            mb={3}
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            placeholder="********"
-            variant="filled"
-            mb={6}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <FormLabel>
+            メールアドレス
+            <Input
+              value={email}
+              placeholder="example@example.com"
+              variant="filled"
+              mb={3}
+              type="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </FormLabel>
+          <FormLabel>
+            パスワード
+            <div className="relative">
+              <Input
+                value={password}
+                placeholder="6文字以上"
+                variant="filled"
+                mb={3}
+                type={isRevealPassword ? 'text' : 'password'}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <span className="absolute right-3 top-1/4">
+                {isRevealPassword ? (
+                  <FaEye
+                    onClick={() => setIsRevealPassword(false)}
+                    className=" cursor-pointer"
+                  />
+                ) : (
+                  <FaEyeSlash
+                    onClick={() => setIsRevealPassword(true)}
+                    className=" cursor-pointer"
+                  />
+                )}
+              </span>
+            </div>
+          </FormLabel>
           <Button bg="orange.400" colorScheme="teal" onClick={login}>
-            Log in
+            ログイン
           </Button>
-          <NextLink href="/user/register" className="my-5 text-center">
-            新規追加はこちら
+          <NextLink
+            href="/user/register"
+            className="my-5 text-center underline">
+            ※新規追加はこちら
           </NextLink>
         </Flex>
       </Flex>
