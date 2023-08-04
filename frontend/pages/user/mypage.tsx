@@ -19,7 +19,8 @@ export default function Mypage() {
           alignItems="center"
           justifyContent="center"
           flexDirection={'column'}
-          gap={5}>
+          gap={5}
+        >
           <Heading className="text-center">ログインしていません</Heading>
           <Button bg="orange.400" colorScheme="teal" as={NextLink} href="login">
             ログイン
@@ -35,7 +36,8 @@ export default function Mypage() {
         alignItems="center"
         justifyContent="center"
         flexDirection={'column'}
-        gap={5}>
+        gap={5}
+      >
         <Heading className="text-center">マイページ</Heading>
         <Flex alignItems="center" justifyContent="center" gap={20}>
           <Flex direction={'column'} gap={5}>
@@ -56,7 +58,8 @@ export default function Mypage() {
             background="#FFFFEE"
             padding={12}
             rounded={3}
-            width={'100vh'}>
+            width={'100vh'}
+          >
             <table className="w-4/5">
               <tr>
                 <th className=" text-start">お名前:</th>
