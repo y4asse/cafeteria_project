@@ -31,12 +31,9 @@ const Form1 = () => {
 
   // 投稿ボタンを押したときに呼び出される関数
   const handlePost = async () => {
+    var description = contents;
     try {
-      const data = {
-        title: title,
-        contents: contents,
-      };
-      await axios.post('http://localhost:3000/posts', {data});
+      await axios.post('http://localhost:3000/posts', {title,description});
       alert('成功しました');
     } catch (error) {
       console.error(error);

@@ -12,5 +12,6 @@ export class CreatePostDto {
   title: string;
 
   @IsString()
+  @IsNotEmpty()
   description: string;
 }
