@@ -97,7 +97,8 @@ export default function Login() {
         alignItems="center"
         justifyContent="center"
         flexDirection={'column'}
-        gap={5}>
+        gap={5}
+      >
         <Heading className="text-center">新規登録</Heading>
         <Flex alignItems="center" justifyContent="center" gap={20}>
           <Flex direction={'column'} gap={5}>
@@ -124,7 +125,8 @@ export default function Login() {
             <Button
               onClick={() => {
                 fileInputRef.current?.click();
-              }}>
+              }}
+            >
               プロフィール画像を追加
             </Button>
           </Flex>
@@ -133,7 +135,8 @@ export default function Login() {
             background="#FFFFEE"
             padding={12}
             rounded={3}
-            width={'100vh'}>
+            width={'100vh'}
+          >
             <FormLabel>
               お名前
               <Input
