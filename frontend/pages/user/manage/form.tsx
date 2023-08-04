@@ -29,22 +29,20 @@ const Form1 = () => {
   const [contents, setContents] = useState('');
   const [universityName, setUniversityName] = useState('');
 
-
-    // 投稿ボタンを押したときに呼び出される関数
-    const handlePost = async () => {
-
-      try {
-        const data = {
-          title: title,
-          contents: contents,
-        };
-        await axios.post("http://localhost:3000/posts", {data});
-        alert("成功しました");
-      } catch (error) {
-        console.error(error);
-        alert("エラーが発生しました");
-      }
-    };
+  // 投稿ボタンを押したときに呼び出される関数
+  const handlePost = async () => {
+    try {
+      const data = {
+        title: title,
+        contents: contents,
+      };
+      await axios.post('http://localhost:3000/posts', {data});
+      alert('成功しました');
+    } catch (error) {
+      console.error(error);
+      alert('エラーが発生しました');
+    }
+  };
 
   return (
     <>
@@ -93,19 +91,19 @@ const Form1 = () => {
         <Input id="file" type="file" />
       </FormControl>
       <ButtonGroup mt="5%" w="100%">
-          <Flex w="100%" justifyContent="space-between">
-            <Flex>
-              <Button
-                w="7rem"
-                onClick={handlePost}
-                colorScheme="teal"
-                variant="outline"
-              >
-                投稿する
-              </Button>
-            </Flex>
+        <Flex w="100%" justifyContent="space-between">
+          <Flex>
+            <Button
+              w="7rem"
+              onClick={handlePost}
+              colorScheme="teal"
+              variant="outline"
+            >
+              投稿する
+            </Button>
           </Flex>
-        </ButtonGroup>
+        </Flex>
+      </ButtonGroup>
     </>
   );
 };
