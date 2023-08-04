@@ -23,7 +23,8 @@ export default function Mypage() {
           onClick={() => signOut()}
           _hover={{
             bg: 'orange.300',
-          }}>
+          }}
+        >
           サインアウト
         </Button>
       </div>
