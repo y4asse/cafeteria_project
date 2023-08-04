@@ -20,7 +20,6 @@ export const postImage = async (image: File) => {
     //await uploadBytes(uploadRef, image)を使用して、uploadRefに指定された場所にimageファイルをアップロードします。この関数は非同期処理なので、awaitを使用して完了を待ちます。
     await uploadBytes(uploadRef, image).then(async function (result) {
       console.log(result);
-      console.log('Uploaded a blob or file!');
 
       await getDownloadURL(uploadRef).then(function (url) {
         uploadResult = url;

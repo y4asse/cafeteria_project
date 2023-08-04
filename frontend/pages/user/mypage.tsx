@@ -8,6 +8,7 @@ export default function Mypage() {
   return (
     <Layout>
       <div className="">
+        <div>{session?.user.id}</div>
         <div>{session?.user.name}</div>
         <div>{session?.user.email}</div>
         <div>{session?.user.image}</div>
@@ -22,8 +23,7 @@ export default function Mypage() {
           onClick={() => signOut()}
           _hover={{
             bg: 'orange.300',
-          }}
-        >
+          }}>
           サインアウト
         </Button>
       </div>
