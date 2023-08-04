@@ -4,6 +4,7 @@ import NextLink from 'next/link';
 import {ChevronDownIcon} from '@chakra-ui/icons';
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
+import {BsFillPersonFill} from 'react-icons/bs';
 
 console.log('Have a good day 😄');
 export default function Header() {
@@ -67,11 +68,15 @@ export default function Header() {
                 </div>
                 <div className="flex gap-1 items-center relative">
                   <button onClick={toggleIsShowProfile}>
-                    <img
-                      src={session.user.image!}
-                      alt="profile-img"
-                      className="w-10 h-10 rounded-full"
-                    />
+                    {session.user.image != (null || undefined || '') ? (
+                      <img
+                        src={session.user.image!}
+                        alt="profile-img"
+                        className="w-10 h-10 rounded-full"
+                      />
+                    ) : (
+                      <BsFillPersonFill className="text-4xl border border-gray-500 rounded-full p-1" />
+                    )}
                   </button>
                   <button onClick={toggleIsShowProfile}>
                     <ChevronDownIcon className=" text-2xl" />

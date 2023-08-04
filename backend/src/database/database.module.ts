@@ -10,7 +10,10 @@ import { User } from 'src/users/entities/user.entity';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host: 'localhost',
+        host:
+          configService.get<string>('DB_HOST') === 'localhost'
+            ? 'localhost'
+            : 'db',
         port: 3306,
         username: 'user',
         password: 'password',
