@@ -7,6 +7,7 @@ import Form2 from './form';
 
 export default function Post() {
   const {data: session} = useSession();
+
   return (
     <Layout>
       <div>
