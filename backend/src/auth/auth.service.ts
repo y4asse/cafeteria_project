@@ -31,7 +31,13 @@ export class AuthService {
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload = { email: user.email, sub: user.id };
       const accessToken = this.jwtService.sign(payload);
-      return { accessToken };
+      return {
+        id: user.id,
+        email: user.email,
+        image: user.profileImageUrl,
+        name: user.username,
+        accessToken: accessToken,
+      };
     }
     throw new UnauthorizedException(
       'ユーザー名またはパスワードを確認してください',

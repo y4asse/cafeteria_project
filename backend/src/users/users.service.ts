@@ -16,13 +16,17 @@ export class UsersService {
   }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const { email, password } = createUserDto;
+    const { email, password, university, profileImageUrl, username } =
+      createUserDto;
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = this.userRepository.create({
       email,
       password: hashedPassword,
+      university,
+      profileImageUrl,
+      username,
     });
     // saveでデータベースに保存される
     await this.userRepository.save(user);

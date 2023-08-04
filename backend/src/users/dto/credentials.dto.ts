@@ -6,6 +6,7 @@ import {
   MinLength,
 } from 'class-validator';
 
+//認証に必要な情報をまとめたデータ転送オブジェクト
 export class CredentialsDto {
   @IsString()
   @IsNotEmpty()

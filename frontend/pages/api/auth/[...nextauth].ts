@@ -1,17 +1,21 @@
 import NextAuth, {NextAuthOptions} from 'next-auth';
-import GitHubProvider from 'next-auth/providers/github';
-import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID || '',
-      clientSecret: process.env.GITHUB_SECRET || '',
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID || '',
-      clientSecret: process.env.GOOGLE_SECRET || '',
+    CredentialsProvider({
+      credentials: {
+        email: {label: 'メールアドレス', type: 'email', placeholder: ''},
+        password: {label: 'パスワード', type: 'password'},
+        id: {label: 'ID', type: 'text'},
+        image: {label: 'プロフィール画像', type: 'text'},
+        name: {label: 'ユーザ名', type: 'text'},
+        accessToken: {label: 'アクセストークン', type: 'text'},
+      },
+      async authorize(credentials, req) {
+        if (credentials == undefined) return null;
+        return credentials;
+      },
     }),
   ],
 
@@ -19,6 +23,7 @@ export const authOptions: NextAuthOptions = {
 
   session: {
     strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
 
   pages: {
@@ -26,9 +31,25 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
+    jwt: async ({token, user, account}) => {
+      if (user) {
+        token.email = user.email;
+        token.name = user.name;
+        token.sub = user.id;
+        token.picture = user.image;
+        token.accessToken = user.accessToken;
+        token.university = user.university;
+      }
+      return token;
+    },
     async session({session, token}) {
-      if (session.user != null && token.sub != null) {
-        session.user.id = token.sub;
+      if (token) {
+        session.user.id = token.sub!;
+        session.user.email = token.email;
+        session.user.name = token.name;
+        session.user.image = token.picture;
+        session.user.accessToken = token.accessToken;
+        session.user.university = token.university;
       }
       return session;
     },
