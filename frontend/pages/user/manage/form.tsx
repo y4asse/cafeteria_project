@@ -20,12 +20,32 @@ import {
   FormHelperText,
   InputRightElement,
 } from '@chakra-ui/react';
-
+import axios from 'axios';
 import {useToast} from '@chakra-ui/react';
 
 const Form1 = () => {
   const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
+  const [title, setTitle] = useState('');
+  const [contents, setContents] = useState('');
+  const [universityName, setUniversityName] = useState('');
+
+
+    // 投稿ボタンを押したときに呼び出される関数
+    const handlePost = async () => {
+
+      try {
+        const data = {
+          title: title,
+          contents: contents,
+        };
+        await axios.post("http://localhost:3000/posts", {data});
+        alert("成功しました");
+      } catch (error) {
+        console.error(error);
+        alert("エラーが発生しました");
+      }
+    };
+
   return (
     <>
       <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%">
@@ -36,27 +56,56 @@ const Form1 = () => {
           <FormLabel htmlFor="title" fontWeight={'normal'}>
             タイトル
           </FormLabel>
-          <Input id="title" placeholder="タイトル" />
+          <Input
+            id="title"
+            placeholder="タイトル"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </FormControl>
       </Flex>
       <FormControl mt="2%">
         <FormLabel htmlFor="contents" fontWeight={'normal'}>
           内容
         </FormLabel>
-        <Input id="text" type="text" />
+        <Input
+          id="text"
+          type="text"
+          value={contents}
+          onChange={(e) => setContents(e.target.value)}
+        />
       </FormControl>
 
       <FormControl mt="2%">
         <FormLabel htmlFor="university_name" fontWeight={'normal'}>
           大学名
         </FormLabel>
-        <Input id="text" type="text" />
+        <Input
+          id="text"
+          type="text"
+          value={universityName}
+          onChange={(e) => setUniversityName(e.target.value)}
+        />
       </FormControl>
 
       <FormControl mt="2%">
         <FormLabel>投稿写真</FormLabel>
         <Input id="file" type="file" />
       </FormControl>
+      <ButtonGroup mt="5%" w="100%">
+          <Flex w="100%" justifyContent="space-between">
+            <Flex>
+              <Button
+                w="7rem"
+                onClick={handlePost}
+                colorScheme="teal"
+                variant="outline"
+              >
+                投稿する
+              </Button>
+            </Flex>
+          </Flex>
+        </ButtonGroup>
     </>
   );
 };
@@ -78,38 +127,6 @@ export default function Multistep() {
         as="form"
       >
         <Form1 />
-        <ButtonGroup mt="5%" w="100%">
-          <Flex w="100%" justifyContent="space-between">
-            <Flex>
-              <Button
-                w="7rem"
-                onClick={() => {}}
-                colorScheme="teal"
-                variant="outline"
-              >
-                投稿する
-              </Button>
-            </Flex>
-            {step === 3 ? (
-              <Button
-                w="7rem"
-                colorScheme="red"
-                variant="solid"
-                onClick={() => {
-                  toast({
-                    title: 'Account created.',
-                    description: "We've created your account for you.",
-                    status: 'success',
-                    duration: 3000,
-                    isClosable: true,
-                  });
-                }}
-              >
-                Submit
-              </Button>
-            ) : null}
-          </Flex>
-        </ButtonGroup>
       </Box>
     </>
   );
