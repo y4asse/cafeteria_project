@@ -10,7 +10,6 @@ describe('PostsController', () => {
       controllers: [PostsController],
       providers: [PostsService],
     }).compile();
-
     controller = module.get<PostsController>(PostsController);
   });
 
