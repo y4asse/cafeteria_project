@@ -18,8 +18,22 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signUp(createUserDto: CreateUserDto): Promise<User> {
-    return await this.userService.create(createUserDto);
+  async signUp(createUserDto: CreateUserDto) {
+    if (await this.userService.findOne(createUserDto.email)) {
+      throw new UnauthorizedException(
+        'このメールアドレスは既に登録されています',
+      );
+    }
+    const user = await this.userService.create(createUserDto);
+    const payload = { email: user.email, sub: user.id };
+    const accessToken = this.jwtService.sign(payload);
+    return {
+      id: user.id,
+      email: user.email,
+      image: user.profileImageUrl,
+      name: user.username,
+      accessToken: accessToken,
+    };
   }
 
   async login(credentialsDto: CredentialsDto) {

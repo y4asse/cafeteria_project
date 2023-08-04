@@ -4,6 +4,7 @@ import NextLink from 'next/link';
 import {ChevronDownIcon} from '@chakra-ui/icons';
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
+import {BsFillPersonFill} from 'react-icons/bs';
 
 console.log('Have a good day 😄');
 export default function Header() {
@@ -40,8 +41,7 @@ export default function Header() {
           borderStyle="solid"
           borderColor="gray.200"
           align="center"
-          backgroundColor="#FBCF86"
-        >
+          backgroundColor="#FBCF86">
           <Flex flex={1} justify="space-between" maxW="5xl" mx="auto">
             <Heading as="h1" size="lg">
               <NextLink href="/">Cafeteria_Database</NextLink>
@@ -60,18 +60,21 @@ export default function Header() {
                     href="/user/manage/post"
                     _hover={{
                       bg: 'orange.300',
-                    }}
-                  >
+                    }}>
                     投稿する
                   </Button>
                 </div>
                 <div className="flex gap-1 items-center relative">
                   <button onClick={toggleIsShowProfile}>
-                    <img
-                      src={session.user.image!}
-                      alt="profile-img"
-                      className="w-10 h-10 rounded-full"
-                    />
+                    {session.user.image != (null || undefined || '') ? (
+                      <img
+                        src={session.user.image!}
+                        alt="profile-img"
+                        className="w-10 h-10 rounded-full"
+                      />
+                    ) : (
+                      <BsFillPersonFill className="text-4xl border border-gray-500 rounded-full p-1" />
+                    )}
                   </button>
                   <button onClick={toggleIsShowProfile}>
                     <ChevronDownIcon className=" text-2xl" />
@@ -102,8 +105,7 @@ export default function Header() {
                 href="/user/login"
                 _hover={{
                   bg: 'orange.300',
-                }}
-              >
+                }}>
                 ログイン
               </Button>
             )}
