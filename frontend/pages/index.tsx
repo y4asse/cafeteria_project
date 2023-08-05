@@ -354,7 +354,7 @@ const Home = (props: any) => {
             fontWeight={600}
             color="white"
             bg="orange.400"
-            href="/user/ranking"
+            href="/user/today_lunch"
             _hover={{
               bg: 'orange.300',
             }}
@@ -408,7 +408,7 @@ const Home = (props: any) => {
             fontWeight={600}
             color="white"
             bg="orange.400"
-            href="/user/today_lunch"
+            href="/user/search"
             _hover={{
               bg: 'orange.300',
             }}
