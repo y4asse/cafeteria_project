@@ -19,7 +19,7 @@ import {
 import Layout from './layout';
 import {Button} from '@chakra-ui/react';
 import NextLink from 'next/link';
-import {getAllPosts} from "../utils/api";
+import {getAllPosts} from '../utils/api';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -52,15 +52,14 @@ interface BlogAuthorProps {
   name: string;
 }
 
-
-export async function getStaticProps(){
+export async function getStaticProps() {
   const posts = await getAllPosts();
   console.log(posts);
-  return{
-    prop:{
+  return {
+    props: {
       posts,
     },
-  }
+  };
 }
 // とってきたデータをforloopで処理する
 const Home = () => {
@@ -96,8 +95,7 @@ const Home = () => {
             _hover={{
               bg: 'orange.300',
             }}
-            className="w-1/3"
-          >
+            className="w-1/3">
             検索する
           </Button>
         </div>
@@ -218,21 +216,18 @@ const Home = () => {
           marginTop={{base: '1', sm: '5'}}
           display="flex"
           flexDirection={{base: 'column', sm: 'row'}}
-          justifyContent="space-between"
-        >
+          justifyContent="space-between">
           <Box
             display="flex"
             flex="1"
             marginRight="3"
             position="relative"
-            alignItems="center"
-          >
+            alignItems="center">
             <Box
               width={{base: '100%', sm: '85%'}}
               zIndex="2"
               marginLeft={{base: '0', sm: '5%'}}
-              marginTop="5%"
-            >
+              marginTop="5%">
               <Box textDecoration="none" _hover={{textDecoration: 'none'}}>
                 <Image
                   borderRadius="lg"
@@ -254,8 +249,7 @@ const Home = () => {
             flex="1"
             flexDirection="column"
             justifyContent="center"
-            marginTop={{base: '3', sm: '0'}}
-          >
+            marginTop={{base: '3', sm: '0'}}>
             <BlogTags tags={['Engineering', 'Product']} />
             <Heading marginTop="1">
               <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
@@ -266,8 +260,7 @@ const Home = () => {
               as="p"
               marginTop="2"
               color={useColorModeValue('gray.700', 'gray.200')}
-              fontSize="lg"
-            >
+              fontSize="lg">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry&apos;s standard dummy
               text ever since the 1500s, when an unknown printer took a galley
@@ -384,8 +377,7 @@ const Home = () => {
             _hover={{
               bg: 'orange.300',
             }}
-            className="w-1/3"
-          >
+            className="w-1/3">
             ランキングへ
           </Button>
         </div>
@@ -429,8 +421,7 @@ const Home = () => {
             _hover={{
               bg: 'orange.300',
             }}
-            className="w-1/3"
-          >
+            className="w-1/3">
             今日の学食へ
           </Button>
         </div>
@@ -484,8 +475,7 @@ const Home = () => {
             _hover={{
               bg: 'orange.300',
             }}
-            className="w-1/3"
-          >
+            className="w-1/3">
             検索する
           </Button>
         </div>
