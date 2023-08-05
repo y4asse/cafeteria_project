@@ -18,7 +18,7 @@ export class Posts {
   uid: number;
 
   @Column()
-  did: number;
+  university: string;
 
   @Column({ default: true })
   isActive: boolean;
