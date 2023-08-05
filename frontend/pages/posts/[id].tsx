@@ -29,7 +29,7 @@ type User = {
   id: string;
   username: string;
   university: string;
-  image: string;
+  profileImageUrl: string;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
@@ -68,33 +68,75 @@ const Post = (props: Props) => {
   const {post, comments} = props;
   return (
     <Layout>
-      <Flex></Flex>
-      {post.title}
-      <br />
-      {post.description}
-      <br />
-      <img src={post.picture} />
-      <br />
-      {post.uid}
-      <br />
-      {post.university}
-      <br />
-      {post.isActive}
-      <br />
-      {format(Date.parse(post.update_at), 'yyyy/MM/dd')}
-      <br />
-      <hr></hr>
       <div>
-        {comments.map((comment) => (
-          <div key={comment.id}>
-            {comment.content}
-            <br />
-            {format(Date.parse(comment.created_at), 'yyyy/MM/dd')}
-            <br />
-            {comment.user.username}
-            <br />
+        {/* 投稿内容 */}
+        <div className="flex-col justify-center items-center m-10 border-2 border-gray-400 rounded-2xl shadow-xl">
+          {/* 投稿写真 */}
+          <h1 className="text-5xl text-center my-5 ">{post.title}</h1>
+          <img
+            width={300}
+            src={post.picture}
+            alt="post-picture"
+            className="bg-black shadow-2xl mx-auto"
+          />
+          {/* 投稿者内容 */}
+          <div className="text-center p-5 mt-5 text-xl">
+            <p className="text-3xl mb-3">{post.description} </p>
+            <p className="mb-3">大学名: {post.university}</p>
+            <p className="mb-3">
+              投稿日時: {format(Date.parse(post.update_at), 'yyyy/MM/dd')}
+            </p>
           </div>
-        ))}
+        </div>
+
+        {/* コメント */}
+        <div className="flex-col justify-center items-center w-full">
+          {comments.map((comment) => (
+            <div
+              key={comment.id}
+              className="border-2 border-black p-5 flex gap-3  shadow-2xl m-5 rounded-xl">
+              <img
+                className="w-20 h-20 rounded-full"
+                src={comment.user.profileImageUrl}
+                alt="comment-user-profile-profileImageUrl"
+              />
+              <div className=" rounded">
+                <p className="font-bold">
+                  {comment.user.username}
+                  <span className="font-thin">
+                    {format(Date.parse(comment.created_at), 'yyyy/MM/dd')}
+                  </span>
+                </p>
+                {comment.content}
+              </div>
+              <br />
+            </div>
+          ))}
+
+          {comments.map((comment) => (
+            <div
+              key={comment.id}
+              className="border-2 border-black p-5 flex gap-3  shadow-lg m-5 rounded-xl">
+              <img
+                className="w-20 h-20 rounded-full"
+                src={comment.user.profileImageUrl}
+                alt="comment-user-profile-profileImageUrl"
+              />
+              <div className=" rounded">
+                <p className="font-bold">
+                  {comment.user.username}:{' '}
+                  <span className="font-thin">
+                    {format(Date.parse(comment.created_at), 'yyyy/MM/dd')}
+                  </span>
+                </p>
+                {comment.content}
+              </div>
+              <br />
+            </div>
+          ))}
+        </div>
+        <br />
+        <br />
       </div>
     </Layout>
   );
