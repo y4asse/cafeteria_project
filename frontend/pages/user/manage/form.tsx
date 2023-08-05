@@ -32,8 +32,9 @@ const Form1 = () => {
   // 投稿ボタンを押したときに呼び出される関数
   const handlePost = async () => {
     var description = contents;
+    var university  = universityName;
     try {
-      await axios.post('http://localhost:3000/posts', {title,description});
+      await axios.post('http://localhost:3000/posts', {title,description,university});
       alert('成功しました');
     } catch (error) {
       console.error(error);

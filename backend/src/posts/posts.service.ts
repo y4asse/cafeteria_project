@@ -13,13 +13,13 @@ export class PostsService {
   async create(createPostDto: CreatePostDto): Promise<Posts> {
     //pictureのfirebasestrageに保存する処理を追加する
 
-    const { title, description } = createPostDto;
+    const { title, description, university } = createPostDto;
     const post = this.postRepository.create({
       title: title, // タイトルを設定
       description: description, // 引数のcontentをdescriptionフィールドに設定
       picture: 'picture_url_here', // 画像のURLを設定
       uid: 1, // ユーザーIDを設定
-      did: 1, // 所属id
+      university: university, // 所属id
       isActive: true, // isActiveフィールドをtrueに設定
       update_at: new Date(), // 現在の日時を設定
     });
