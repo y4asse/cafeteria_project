@@ -62,7 +62,11 @@ export default function Search() {
 
   return (
     <Layout>
-        <Box>
+        <Box 
+        rounded="lg"
+        p={6}
+        m="10px auto"
+        as="form">
          <FormControl mt="2%">
             <FormLabel htmlFor="university_name" fontWeight={'normal'}>
             大学名で検索
@@ -94,6 +98,7 @@ export default function Search() {
             className="border-2 border-black p-5 flex gap-3 shadow-lg my-5 mb-10 mx-24 rounded-xl"
             key={post.id}
             >
+            {/* ひよこに変える */}
             <img
                 className="w-20 h-20 rounded-full"
                 src={'/images/icon.png'}
@@ -103,10 +108,13 @@ export default function Search() {
                 <p className="font-bold">{post.title}</p>
             </div>
             <br />
+            <NextLink href={`/posts/${post.id}`}>
+                <p className="font-bold">ここから詳細を見る</p>
+            </NextLink>
             </div>
         ))
         ) : (
-        <p>データがありません。</p>
+        <p></p>
         )}
         <div className="flex justify-center my-10">
           <Button
