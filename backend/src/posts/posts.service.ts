@@ -28,12 +28,12 @@ export class PostsService {
     return post;
   }
 
-  findAll() {
-    return `こんにちは、おはようございます`;
+  async findAll(): Promise<Posts[]> {
+    return this.postRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
+  async findOne(id): Promise<Posts> {
+    return this.postRepository.findOne(id);
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {

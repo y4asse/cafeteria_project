@@ -19,6 +19,7 @@ import {
 import Layout from './layout';
 import {Button} from '@chakra-ui/react';
 import NextLink from 'next/link';
+import {getAllPosts} from "../utils/api";
 
 interface IBlogTags {
   tags: Array<string>;
@@ -51,6 +52,16 @@ interface BlogAuthorProps {
   name: string;
 }
 
+
+export async function getStaticProps(){
+  const posts = await getAllPosts();
+  console.log(posts);
+  return{
+    prop:{
+      posts,
+    },
+  }
+}
 // とってきたデータをforloopで処理する
 const Home = () => {
   return (
