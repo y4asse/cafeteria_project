@@ -67,13 +67,38 @@ const Form1 = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:3000/posts', {
-        title,
-        description,
-        university,
-        image: url,
-        uid: session?.user.id,
-      });
+      const postData = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/posts`,
+        {
+          title,
+          description,
+          university,
+          image: url,
+          uid: session?.user.id,
+        }
+      );
+      console.log(postData.data.id);
+
+      //aiにコメントを書いてもらう
+      const {data} = await axios.post(
+        `${process.env.NEXT_PUBLIC_FRONT_URL}/api/ai`,
+        {
+          title,
+          description,
+          university,
+          name: session?.user.name,
+        }
+      );
+      const {responseText} = data;
+      const commentData = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/comments/create`,
+        {
+          pid: postData.data.id,
+          uid: `${process.env.NEXT_PUBLIC_HIYOKO_ID}`,
+          content: responseText,
+        }
+      );
+
       alert('成功しました');
     } catch (error) {
       console.error(error);

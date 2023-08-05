@@ -52,15 +52,15 @@ interface BlogAuthorProps {
   name: string;
 }
 
-export async function getStaticProps() {
-  const posts = await getAllPosts();
-  console.log(posts);
-  return {
-    props: {
-      posts,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const posts = await getAllPosts();
+//   console.log(posts);
+//   return {
+//     props: {
+//       posts,
+//     },
+//   };
+// }
 // とってきたデータをforloopで処理する
 const Home = () => {
   return (
