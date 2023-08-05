@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../layout';
 import {GetServerSideProps, GetStaticPaths, GetStaticProps} from 'next';
 import {format} from 'date-fns';
+import {Flex} from '@chakra-ui/react';
 
 type Post = {
   id: string;
@@ -32,7 +33,12 @@ type User = {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
-  const {id} = params!;
+  if (params === undefined) {
+    return {
+      notFound: true,
+    };
+  }
+  const {id} = params;
   const postData = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`
   );
@@ -62,6 +68,7 @@ const Post = (props: Props) => {
   const {post, comments} = props;
   return (
     <Layout>
+      <Flex></Flex>
       {post.title}
       <br />
       {post.description}
