@@ -12,5 +12,10 @@ export class CreatePostDto {
   title: string;
 
   @IsString()
+  @IsNotEmpty()
   description: string;
+
+  @IsString()
+  @IsNotEmpty()
+  university: string;
 }
