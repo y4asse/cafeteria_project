@@ -22,6 +22,15 @@ export class CommentsService {
   }
 
   async findAllByPid(pid: string): Promise<Comments[]> {
-    return this.commentRepository.find({ where: { pid: pid } });
+    const comments = await this.commentRepository.find({
+      where: { pid },
+      relations: ['user'],
+      order: { created_at: 'DESC' },
+    });
+    comments.forEach((comment) => {
+      delete comment.user.password;
+      delete comment.user.email;
+    });
+    return comments;
   }
 }
