@@ -1,7 +1,10 @@
+import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   Timestamp,
   UpdateDateColumn,
@@ -26,4 +29,8 @@ export class Comments {
 
   @UpdateDateColumn({ comment: '更新日時' })
   readonly updated_at?: Timestamp;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'uid' })
+  user: User;
 }

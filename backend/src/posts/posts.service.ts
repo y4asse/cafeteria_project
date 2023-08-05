@@ -31,14 +31,14 @@ export class PostsService {
   }
 
   async findOne(id): Promise<Posts> {
-    return this.postRepository.findOne(id);
+    return this.postRepository.findOne({ where: { id: id } });
   }
 
-  update(id: number, updatePostDto: UpdatePostDto) {
+  update(id: string, updatePostDto: UpdatePostDto) {
     return `This action updates a #${id} post`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} post`;
   }
 }
