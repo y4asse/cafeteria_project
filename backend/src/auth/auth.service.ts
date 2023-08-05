@@ -33,6 +33,7 @@ export class AuthService {
       image: user.profileImageUrl,
       name: user.username,
       accessToken: accessToken,
+      university: user.university,
     };
   }
 

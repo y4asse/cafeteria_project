@@ -1,6 +1,7 @@
 'use client';
 
-import {useState} from 'react';
+import {useRef, useState} from 'react';
+import {BsFillPersonFill} from 'react-icons/bs';
 import {
   Progress,
   Box,
@@ -22,19 +23,57 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import {useToast} from '@chakra-ui/react';
+import {postImage} from '@/pages/api/upload';
+import {ClassNames} from '@emotion/react';
+import {useSession} from 'next-auth/react';
 
 const Form1 = () => {
+  const {data: session, status} = useSession();
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
-  const [universityName, setUniversityName] = useState('');
+  const [universityName, setUniversityName] = useState(
+    session?.user.university
+  );
+
+  console.log(session?.user.university);
+  //画像
+  const [image, setImage] = useState<File | undefined>(undefined);
+  const [createObjectURL, setCreateObjectURL] = useState<string | undefined>(
+    undefined
+  );
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const uploadToClient = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+
+      setImage(file);
+      setCreateObjectURL(URL.createObjectURL(file));
+    }
+  };
+  const uploadToServer = async (): Promise<string | undefined> => {
+    if (!image) return;
+    const url = await postImage(image);
+    return url;
+  };
 
   // 投稿ボタンを押したときに呼び出される関数
   const handlePost = async () => {
     var description = contents;
-    var university  = universityName;
+    var university = universityName;
+    const url = await uploadToServer();
+    if (image && !url) {
+      alert('画像のアップロードに失敗しました');
+      return;
+    }
     try {
-      await axios.post('http://localhost:3000/posts', {title,description,university});
+      await axios.post('http://localhost:3000/posts', {
+        title,
+        description,
+        university,
+        image: url,
+        uid: session?.user.id,
+      });
       alert('成功しました');
     } catch (error) {
       console.error(error);
@@ -79,14 +118,37 @@ const Form1 = () => {
         <Input
           id="text"
           type="text"
-          value={universityName}
+          value={universityName!}
           onChange={(e) => setUniversityName(e.target.value)}
         />
       </FormControl>
 
       <FormControl mt="2%">
         <FormLabel>投稿写真</FormLabel>
-        <Input id="file" type="file" />
+        {createObjectURL && (
+          <img
+            src={createObjectURL}
+            alt="profile-img"
+            width={200}
+            height={200}
+            className="mb-3"
+          />
+        )}
+        <Button
+          onClick={() => {
+            fileInputRef.current?.click();
+          }}>
+          投稿画像を追加
+        </Button>
+        <input
+          ref={fileInputRef}
+          id="file-input"
+          type="file"
+          accept="image/*"
+          name="myImage"
+          className=" hidden"
+          onChange={uploadToClient}
+        />
       </FormControl>
       <ButtonGroup mt="5%" w="100%">
         <Flex w="100%" justifyContent="space-between">
@@ -95,8 +157,7 @@ const Form1 = () => {
               w="7rem"
               onClick={handlePost}
               colorScheme="teal"
-              variant="outline"
-            >
+              variant="outline">
               投稿する
             </Button>
           </Flex>
@@ -120,8 +181,7 @@ export default function Multistep() {
         maxWidth={800}
         p={6}
         m="10px auto"
-        as="form"
-      >
+        as="form">
         <Form1 />
       </Box>
     </>

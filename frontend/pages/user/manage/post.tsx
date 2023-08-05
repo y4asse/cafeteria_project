@@ -2,8 +2,7 @@
 import Layout from '../../layout';
 import {Button} from '@chakra-ui/react';
 import {signOut, useSession} from 'next-auth/react';
-import Form1 from './form';
-import Form2 from './form';
+import Form1 from '../../../components/form';
 
 export default function Post() {
   const {data: session} = useSession();

@@ -18,4 +18,11 @@ export class CreatePostDto {
   @IsString()
   @IsNotEmpty()
   university: string;
+
+  @IsString()
+  image: string;
+
+  @IsString()
+  @IsNotEmpty()
+  uid: string;
 }
