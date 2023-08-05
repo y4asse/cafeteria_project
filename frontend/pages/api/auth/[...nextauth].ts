@@ -10,6 +10,7 @@ export const authOptions: NextAuthOptions = {
         id: {label: 'ID', type: 'text'},
         image: {label: 'プロフィール画像', type: 'text'},
         name: {label: 'ユーザ名', type: 'text'},
+        university: {label: '大学名', type: 'text'},
         accessToken: {label: 'アクセストークン', type: 'text'},
       },
       async authorize(credentials, req) {

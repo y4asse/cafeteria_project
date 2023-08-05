@@ -17,8 +17,6 @@ export class UsersService {
 
   async findOneById(id: string) {
     const user = await this.userRepository.findOne({ where: { id } });
-    console.log('id:' + id);
-    console.log('user:' + user.email);
     if (!user) {
       throw new NotFoundException('ユーザが存在しません');
     }
@@ -31,7 +29,6 @@ export class UsersService {
       createUserDto;
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
-
     const user = this.userRepository.create({
       email,
       password: hashedPassword,
