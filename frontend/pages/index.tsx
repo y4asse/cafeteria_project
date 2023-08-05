@@ -92,7 +92,9 @@ const Home = (props: any) => {
       <Container maxW={'7xl'} p="10">
         {/* スライドでいろんな学食風景を */}
 
-        <Box paddingTop="40px" className="flex justify-center mb-10">
+        <Box
+          paddingTop="40px"
+          className="flex justify-center mb-10 overflow-hidden">
           <div className="d-demo">
             <div className="d-demo__wrap">
               <ul className="d-demo__list d-demo__list--left">
