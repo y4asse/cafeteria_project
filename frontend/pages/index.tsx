@@ -20,6 +20,7 @@ import Layout from './layout';
 import {Button} from '@chakra-ui/react';
 import NextLink from 'next/link';
 import {getAllPosts} from '../utils/api';
+import {BiSearch} from 'react-icons/bi';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -52,131 +53,67 @@ interface BlogAuthorProps {
   name: string;
 }
 
-// export async function getStaticProps() {
-//   const posts = await getAllPosts();
-//   console.log(posts);
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// }
+export async function getStaticProps() {
+  const posts = await getAllPosts();
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
 // とってきたデータをforloopで処理する
-const Home = () => {
+const Home = (props: any) => {
+  const {posts} = props;
   return (
     <Layout>
-      <Container maxW={'7xl'} p="12">
+      <div className="bg-[url('/cafe.jpg')] bg-cover h-96 bg-fixed bg-center">
         <Box>
-          <Heading className="my-8" as="h1">
+          <h1 className="text-center mt-20 text-6xl text-white">
             Welcome to Cafeteria Database !!
-          </Heading>
+          </h1>
         </Box>
-
-        {/* スライドでいろんな学食風景を */}
-        <Box className="flex justify-center my-10">
-          <Image
-            borderRadius="lg"
-            src={
-              'https://satsuei-navi.com/lohascafe-ariake/image/L206_119_lohascafe-loca-02.jpg'
-            }
-            alt="準備中"
-            objectFit="contain"
-          />
-        </Box>
-
-        <div className="flex justify-center my-10">
+        <div className="flex justify-center mt-20">
           <Button
             as={NextLink}
-            fontSize="sm"
             fontWeight={600}
             color="white"
             bg="orange.400"
-            href="/user/login"
+            href="/user/search"
             _hover={{
               bg: 'orange.300',
             }}
             className="w-1/3">
             検索する
+            <BiSearch className="text-xl ml-3" />
           </Button>
         </div>
-        <Box paddingTop="40px" className="flex justify-center my-10">
+      </div>
+      <Container maxW={'7xl'} p="10">
+        {/* スライドでいろんな学食風景を */}
+
+        <Box
+          paddingTop="40px"
+          className="flex justify-center mb-10 overflow-hidden">
           <div className="d-demo">
             <div className="d-demo__wrap">
               <ul className="d-demo__list d-demo__list--left">
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://satsuei-navi.com/lohascafe-ariake/image/L206_119_lohascafe-loca-02.jpg'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00025463/0.485-310.jpeg'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://video.kurashiru.com/production/articles/b16e5114-4ede-4431-b458-b2befbc131e4/wide_thumbnail_large.jpg?1680142414'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://video.kurashiru.com/production/articles/b16e5114-4ede-4431-b458-b2befbc131e4/wide_thumbnail_large.jpg?1680142414'
-                    }
-                    alt="準備中"
-                  />
-                </li>
+                {posts.map((post: any) => (
+                  <li className="mx-4 d-demo__item" key={post.id}>
+                    <NextLink href={`/posts/${post.id}`}>
+                      <Image src={post.picture} alt="準備中" />
+                    </NextLink>
+                  </li>
+                ))}
               </ul>
               <ul className="d-demo__list d-demo__list--left">
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://satsuei-navi.com/lohascafe-ariake/image/L206_119_lohascafe-loca-02.jpg'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00025463/0.485-310.jpeg'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://video.kurashiru.com/production/articles/b16e5114-4ede-4431-b458-b2befbc131e4/wide_thumbnail_large.jpg?1680142414'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://video.kurashiru.com/production/articles/b16e5114-4ede-4431-b458-b2befbc131e4/wide_thumbnail_large.jpg?1680142414'
-                    }
-                    alt="準備中"
-                  />
-                </li>
+                {posts.map((post: any) => (
+                  <li className="mx-4 d-demo__item" key={post.id}>
+                    <NextLink href={`/posts/${post.id}`}>
+                      <Image src={post.profileImageUrl} alt="準備中" />
+                    </NextLink>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -417,7 +354,7 @@ const Home = () => {
             fontWeight={600}
             color="white"
             bg="orange.400"
-            href="/user/ranking"
+            href="/user/today_lunch"
             _hover={{
               bg: 'orange.300',
             }}
@@ -471,7 +408,7 @@ const Home = () => {
             fontWeight={600}
             color="white"
             bg="orange.400"
-            href="/user/today_lunch"
+            href="/user/search"
             _hover={{
               bg: 'orange.300',
             }}

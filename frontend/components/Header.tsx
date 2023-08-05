@@ -5,6 +5,7 @@ import {ChevronDownIcon} from '@chakra-ui/icons';
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {BsFillPersonFill} from 'react-icons/bs';
+import {BsPencil} from 'react-icons/bs';
 
 console.log('Have a good day 😄');
 export default function Header() {
@@ -42,7 +43,8 @@ export default function Header() {
           align="center"
           backgroundColor="#FBCF86">
           <Flex flex={1} justify="space-between" maxW="5xl" mx="auto">
-            <Heading as="h1" size="lg">
+            <Heading as="h1" size="lg" className="flex">
+              <img src="images/piyo.png" alt="piyo" width={40} />
               <NextLink href="/">Cafeteria_Database</NextLink>
             </Heading>
 
@@ -61,6 +63,7 @@ export default function Header() {
                       bg: 'orange.300',
                     }}>
                     投稿する
+                    <BsPencil className="ml-2" />
                   </Button>
                 </div>
                 <div className="flex gap-1 items-center relative">
