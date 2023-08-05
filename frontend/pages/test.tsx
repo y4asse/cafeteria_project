@@ -22,7 +22,6 @@ export default function UploadImage() {
   const uploadToServer = async () => {
     if (!image) return;
     const url = await postImage(image);
-    console.log(url);
     setUrl(url);
   };
 
