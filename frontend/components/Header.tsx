@@ -5,6 +5,7 @@ import {ChevronDownIcon} from '@chakra-ui/icons';
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {BsFillPersonFill} from 'react-icons/bs';
+import {BsPencil} from 'react-icons/bs';
 
 console.log('Have a good day 😄');
 export default function Header() {
@@ -61,6 +62,7 @@ export default function Header() {
                       bg: 'orange.300',
                     }}>
                     投稿する
+                    <BsPencil className="ml-2" />
                   </Button>
                 </div>
                 <div className="flex gap-1 items-center relative">
