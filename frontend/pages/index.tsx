@@ -52,17 +52,19 @@ interface BlogAuthorProps {
   name: string;
 }
 
-// export async function getStaticProps() {
-//   const posts = await getAllPosts();
-//   console.log(posts);
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// }
+export async function getStaticProps() {
+  const posts = await getAllPosts();
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
 // とってきたデータをforloopで処理する
-const Home = () => {
+const Home = (props:any) => {
+
+  const { posts } = props;
   return (
     <Layout>
       <Container maxW={'7xl'} p="12">
@@ -91,7 +93,7 @@ const Home = () => {
             fontWeight={600}
             color="white"
             bg="orange.400"
-            href="/user/login"
+            href="/user/search"
             _hover={{
               bg: 'orange.300',
             }}
@@ -103,80 +105,28 @@ const Home = () => {
           <div className="d-demo">
             <div className="d-demo__wrap">
               <ul className="d-demo__list d-demo__list--left">
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://satsuei-navi.com/lohascafe-ariake/image/L206_119_lohascafe-loca-02.jpg'
-                    }
-                    alt="準備中"
-                  />
+                {posts.map((post:any)=>(
+                  <li className="mx-4 d-demo__item" key={post.id}>
+                  <NextLink href={`/posts/${post.id}`}>
+                    <Image
+                      src={post.picture}
+                      alt="準備中"
+                    />
+                  </NextLink>
                 </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00025463/0.485-310.jpeg'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://video.kurashiru.com/production/articles/b16e5114-4ede-4431-b458-b2befbc131e4/wide_thumbnail_large.jpg?1680142414'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://video.kurashiru.com/production/articles/b16e5114-4ede-4431-b458-b2befbc131e4/wide_thumbnail_large.jpg?1680142414'
-                    }
-                    alt="準備中"
-                  />
-                </li>
+                ))}
               </ul>
               <ul className="d-demo__list d-demo__list--left">
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://satsuei-navi.com/lohascafe-ariake/image/L206_119_lohascafe-loca-02.jpg'
-                    }
-                    alt="準備中"
-                  />
+                {posts.map((post:any)=>(
+                  <li className="mx-4 d-demo__item" key={post.id}>
+                  <NextLink href={`/posts/${post.id}`}>
+                    <Image
+                      src={post.profileImageUrl}
+                      alt="準備中"
+                    />
+                  </NextLink>
                 </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00025463/0.485-310.jpeg'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://video.kurashiru.com/production/articles/b16e5114-4ede-4431-b458-b2befbc131e4/wide_thumbnail_large.jpg?1680142414'
-                    }
-                    alt="準備中"
-                  />
-                </li>
-                <li className="mx-4 d-demo__item">
-                  {' '}
-                  <Image
-                    src={
-                      'https://video.kurashiru.com/production/articles/b16e5114-4ede-4431-b458-b2befbc131e4/wide_thumbnail_large.jpg?1680142414'
-                    }
-                    alt="準備中"
-                  />
-                </li>
+                ))}
               </ul>
             </div>
           </div>
