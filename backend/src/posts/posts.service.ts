@@ -26,6 +26,28 @@ export class PostsService {
     return post;
   }
 
+  //検索よう
+  async searchPosts(title: string, university: string): Promise<Posts[]> {
+    const query = this.postRepository.createQueryBuilder('post');
+    if (title) {
+      query.andWhere('post.title LIKE :title', { title: `%${title}%` });
+    }
+    if (university) {
+      query.andWhere('post.university LIKE :university', { university: `%${university}%` });
+    }
+    return await query.getMany();
+  }
+
+  //今日の1日よう
+  async searchLunch(university: string): Promise<Posts | null> {
+    const query = this.postRepository.createQueryBuilder('post');
+    query.where('post.university = :university', { university }); 
+    query.orderBy('RAND()'); // ランダムに並び替える
+    query.take(1); // 最初の1行を取得する
+    const randomPost = await query.getOne();
+    return randomPost || null;
+  }
+
   async findAll(): Promise<Posts[]> {
     return this.postRepository.find();
   }
