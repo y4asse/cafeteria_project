@@ -40,7 +40,6 @@ const Form1 = () => {
   );
   const router = useRouter();
 
-  console.log(session?.user.university);
   //画像
   const [image, setImage] = useState<File | undefined>(undefined);
   const [createObjectURL, setCreateObjectURL] = useState<string | undefined>(
@@ -103,7 +102,6 @@ const Form1 = () => {
           uid: session?.user.id,
         }
       );
-      console.log(postData.data.id);
 
       //aiにコメントを書いてもらう
       const {data} = await axios.post(
