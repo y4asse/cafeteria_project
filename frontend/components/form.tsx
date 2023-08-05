@@ -20,21 +20,25 @@ import {
   Textarea,
   FormHelperText,
   InputRightElement,
+  Spinner,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import {useToast} from '@chakra-ui/react';
 import {postImage} from '@/pages/api/upload';
 import {ClassNames} from '@emotion/react';
 import {useSession} from 'next-auth/react';
+import {useRouter} from 'next/router';
 
 const Form1 = () => {
   const {data: session, status} = useSession();
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [universityName, setUniversityName] = useState(
     session?.user.university
   );
+  const router = useRouter();
 
   console.log(session?.user.university);
   //画像
@@ -59,8 +63,30 @@ const Form1 = () => {
 
   // 投稿ボタンを押したときに呼び出される関数
   const handlePost = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
     var description = contents;
     var university = universityName;
+    if (title == '') {
+      alert('タイトルを入力してください');
+      setIsLoading(false);
+      return;
+    }
+    if (description == '') {
+      alert('内容を入力してください');
+      setIsLoading(false);
+      return;
+    }
+    if (university == '') {
+      alert('大学名を入力してください');
+      setIsLoading(false);
+      return;
+    }
+    if (image == undefined) {
+      alert('画像を選択してください');
+      setIsLoading(false);
+      return;
+    }
     const url = await uploadToServer();
     if (image && !url) {
       alert('画像のアップロードに失敗しました');
@@ -99,10 +125,12 @@ const Form1 = () => {
         }
       );
 
-      alert('成功しました');
+      setIsLoading(false);
+      router.push(`/posts/${postData.data.id}`);
     } catch (error) {
       console.error(error);
       alert('エラーが発生しました');
+      setIsLoading(false);
     }
   };
 
@@ -182,8 +210,9 @@ const Form1 = () => {
               w="7rem"
               onClick={handlePost}
               colorScheme="teal"
-              variant="outline">
-              投稿する
+              variant="outline"
+              className={`${isLoading && ' cursor-not-allowed'}`}>
+              {isLoading ? <Spinner /> : '投稿する'}
             </Button>
           </Flex>
         </Flex>
