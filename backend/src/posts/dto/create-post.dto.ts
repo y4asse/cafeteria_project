@@ -20,6 +20,7 @@ export class CreatePostDto {
   university: string;
 
   @IsString()
+  @IsNotEmpty()
   image: string;
 
   @IsString()
