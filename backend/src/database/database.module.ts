@@ -11,14 +11,11 @@ import { User } from 'src/users/entities/user.entity';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host:
-          configService.get<string>('DB_HOST') === 'localhost'
-            ? 'localhost'
-            : 'db',
-        port: 3306,
-        username: 'user',
-        password: 'password',
-        database: 'develop',
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USERNAME'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_DATABASE'),
         //エンティティの変更を自動的に Database に反映してくれます。
         //本番環境では意図せずデータが削除されてしまうこともあるので、明示的にマイグレーションするのが望ましいです。
         synchronize: true,
