@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -20,9 +12,28 @@ export class PostsController {
     return this.postsService.create(createPostDto);
   }
 
-  @Get()
-  findAll() {
-    return this.postsService.findAll();
+  @Post('search')
+  async searchPosts(@Body() searchData: { title: string,university: string }) {
+    try {
+      const { title, university } = searchData;
+      const searchResult = await this.postsService.searchPosts(title,university);
+      return searchResult;
+    } catch (error) {
+      console.error(error);
+      throw new Error('An error occurred while searching posts.');
+    }
+  }
+
+  @Post('today')
+  async searchLunch(@Body() searchData: { university: string }) {
+    try {
+      const { university } = searchData;
+      const searchResult = await this.postsService.searchLunch(university);
+      return searchResult;
+    } catch (error) {
+      console.error(error);
+      throw new Error('An error occurred while searching posts.');
+    }
   }
 
   @Get(':id')
