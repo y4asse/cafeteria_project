@@ -21,6 +21,7 @@ import {Button} from '@chakra-ui/react';
 import NextLink from 'next/link';
 import {getAllPosts} from '../utils/api';
 import {BiSearch} from 'react-icons/bi';
+import Post from './posts/[id]';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -54,7 +55,10 @@ interface BlogAuthorProps {
 }
 
 export async function getStaticProps() {
-  const posts = await getAllPosts();
+  const posts: Post[] | null = await getAllPosts().catch((err) => {
+    console.error(err);
+    return null;
+  });
   return {
     props: {
       posts,
@@ -63,8 +67,11 @@ export async function getStaticProps() {
 }
 
 // とってきたデータをforloopで処理する
-const Home = (props: any) => {
+const Home = (props: {posts: Post[]}) => {
   const {posts} = props;
+  if (posts === null) {
+    return;
+  }
   return (
     <Layout>
       <div className="bg-[url('/cafe.jpg')] bg-cover h-96 bg-fixed bg-center">
