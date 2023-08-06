@@ -102,6 +102,21 @@ const Home = (props: {posts: Post[] | null}) => {
             <BiSearch className="text-xl ml-3" />
           </Button>
         </div>
+        <div className="flex justify-center mt-5">
+          <Button
+            as={NextLink}
+            fontWeight={600}
+            color="white"
+            bg="orange.400"
+            href="/posts"
+            _hover={{
+              bg: 'orange.300',
+            }}
+            className="w-1/3">
+            データベースを見る
+            <BiSearch className="text-xl ml-3" />
+          </Button>
+        </div>
       </div>
 
       {/* スライドでいろんな学食風景を */}
