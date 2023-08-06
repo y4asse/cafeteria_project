@@ -70,7 +70,7 @@ export async function getStaticProps() {
 const Home = (props: {posts: Post[]}) => {
   const {posts} = props;
   const color = useColorModeValue('gray.700', 'gray.200');
-  if (posts === null) {
+  if (!posts) {
     return;
   }
   return (
