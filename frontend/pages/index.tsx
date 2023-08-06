@@ -215,7 +215,7 @@ const Home = (props: {posts: Post[] | null}) => {
                   <Image
                     transform="scale(1.0)"
                     src={
-                      'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                      'https://www.eco.nihon-u.ac.jp/wp-content/uploads/2023/06/gakusyoku1.jpg'
                     }
                     alt="some text"
                     objectFit="contain"
@@ -227,15 +227,14 @@ const Home = (props: {posts: Post[] | null}) => {
                   />
                 </Box>
               </Box>
-              <BlogTags tags={['Engineering', 'Product']} marginTop={3} />
+              <BlogTags tags={['卵かけご飯']} marginTop={3} />
               <Heading fontSize="xl" marginTop="2">
                 <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  Some blog title
+                  卵かけご飯
                 </Text>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
+                卵かけご飯です。美味しいです。
               </Text>
             </Box>
 
@@ -245,7 +244,7 @@ const Home = (props: {posts: Post[] | null}) => {
                   <Image
                     transform="scale(1.0)"
                     src={
-                      'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                      'https://www.sirogohan.com/_files/recipe/images/cha-han/cha-han9324.JPG'
                     }
                     alt="some text"
                     objectFit="contain"
@@ -257,15 +256,14 @@ const Home = (props: {posts: Post[] | null}) => {
                   />
                 </Box>
               </Box>
-              <BlogTags tags={['Engineering', 'Product']} marginTop={3} />
+              <BlogTags tags={['炒飯']} marginTop={3} />
               <Heading fontSize="xl" marginTop="2">
                 <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  Some blog title
+                  チャーハン
                 </Text>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
+               シンプルな炒飯です
               </Text>
             </Box>
 
@@ -275,7 +273,7 @@ const Home = (props: {posts: Post[] | null}) => {
                   <Image
                     transform="scale(1.0)"
                     src={
-                      'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                     'https://www.kamada.co.jp/storage/images/cfiles/121/mX8THkcauOjgn9HLGxPRyafYI0tO1IqmMySlcaTe_1024.jpg'
                     }
                     alt="some text"
                     objectFit="contain"
@@ -287,15 +285,14 @@ const Home = (props: {posts: Post[] | null}) => {
                   />
                 </Box>
               </Box>
-              <BlogTags tags={['Engineering', 'Product']} marginTop={3} />
+              <BlogTags tags={['ラーメン']} marginTop={3} />
               <Heading fontSize="xl" marginTop="2">
                 <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  Some blog title
+                  ラーメン
                 </Text>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
+                美味しいラーメン
               </Text>
             </Box>
           </WrapItem>
@@ -325,7 +322,7 @@ const Home = (props: {posts: Post[] | null}) => {
           <Image
             transform="scale(1.0)"
             src={
-              ' https://4.bp.blogspot.com/-UAUlgNA_l8A/VpjFt3OS0wI/AAAAAAAA3IA/m2WCxFCKSG0/s800/syokudou_student.png'
+              'https://firebasestorage.googleapis.com/v0/b/cafeteria-fa0bf.appspot.com/o/%E3%82%B9%E3%82%AF[…]?alt=media&token=e8f5da2e-bb7d-41ba-8831-36dce3b3ed9a'
             }
             alt="some text"
             objectFit="contain"
@@ -336,12 +333,7 @@ const Home = (props: {posts: Post[] | null}) => {
             }}
           />
           <Text as="p" fontSize="lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            condimentum quam arcu, eu tempus tortor molestie at. Vestibulum
-            pretium condimentum dignissim. Vestibulum ultrices vitae nisi sed
-            imperdiet. Mauris quis erat consequat, commodo massa quis, feugiat
-            sapien. Suspendisse placerat vulputate posuere. Curabitur neque
-            tortor, mattis nec lacus non, placerat congue elit.
+            今日食べたいものを検索
           </Text>
         </Wrap>
         <div className="flex justify-center my-10">
@@ -372,7 +364,7 @@ const Home = (props: {posts: Post[] | null}) => {
                   <Image
                     transform="scale(1.0)"
                     src={
-                      'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                      'https://cdn.sbfoods.co.jp/recipes/05225_l.jpg'
                     }
                     alt="some text"
                     objectFit="contain"
@@ -387,12 +379,11 @@ const Home = (props: {posts: Post[] | null}) => {
               <BlogTags tags={['Engineering', 'Product']} marginTop={3} />
               <Heading fontSize="xl" marginTop="2">
                 <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  Some blog title
+                  キムチラーメン
                 </Text>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
+                日本大学のキムチラーメンです
               </Text>
             </Box>
           </WrapItem>
