@@ -54,7 +54,7 @@ interface BlogAuthorProps {
   name: string;
 }
 
-export async function getStaticProps() {
+export async function getServersideProps() {
   const posts = await getAllPosts();
   return {
     props: {
