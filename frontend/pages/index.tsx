@@ -55,10 +55,7 @@ interface BlogAuthorProps {
 }
 
 export async function getStaticProps() {
-  const posts: Post[] | null = await getAllPosts().catch((err) => {
-    console.error(err);
-    return null;
-  });
+  const posts = await getAllPosts();
   return {
     props: {
       posts,
@@ -67,7 +64,7 @@ export async function getStaticProps() {
 }
 
 // とってきたデータをforloopで処理する
-const Home = (props: {posts: Post[]}) => {
+const Home = (props: {posts: Post[] | null}) => {
   const {posts} = props;
   const color = useColorModeValue('gray.700', 'gray.200');
   if (!posts) {
