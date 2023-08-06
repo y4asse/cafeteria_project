@@ -69,10 +69,10 @@ export async function getStaticProps() {
 // とってきたデータをforloopで処理する
 const Home = (props: {posts: Post[]}) => {
   const {posts} = props;
+  const color = useColorModeValue('gray.700', 'gray.200');
   if (posts === null) {
     return;
   }
-  const color = useColorModeValue('gray.700', 'gray.200');
   return (
     <Layout>
       <div className="bg-[url('/cafe.jpg')] bg-cover h-96 bg-fixed bg-center">
