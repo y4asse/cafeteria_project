@@ -154,9 +154,7 @@ const Form1 = () => {
         <FormLabel htmlFor="contents" fontWeight={'normal'}>
           内容
         </FormLabel>
-        <Input
-          id="text"
-          type="text"
+        <Textarea
           value={contents}
           onChange={(e) => setContents(e.target.value)}
         />
