@@ -22,6 +22,7 @@ import NextLink from 'next/link';
 import {getAllPosts} from '../utils/api';
 import {BiSearch} from 'react-icons/bi';
 import Post from './posts/[id]';
+import {AiOutlineArrowDown} from 'react-icons/ai';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -204,116 +205,6 @@ const Home = (props: {posts: Post[] | null}) => {
         </Box>
 
         <Heading paddingTop="80px" as="h2" marginTop="5">
-          ランキング
-        </Heading>
-        <Divider marginTop="5" />
-        <Wrap spacing="30px" marginTop="5">
-          <WrapItem width={{base: '100%', sm: '45%', md: '45%', lg: '30%'}}>
-            <Box className="mx-8" w="100%">
-              <Box borderRadius="lg" overflow="hidden">
-                <Box textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  <Image
-                    transform="scale(1.0)"
-                    src={
-                      'https://www.eco.nihon-u.ac.jp/wp-content/uploads/2023/06/gakusyoku1.jpg'
-                    }
-                    alt="some text"
-                    objectFit="contain"
-                    width="100%"
-                    transition="0.3s ease-in-out"
-                    _hover={{
-                      transform: 'scale(1.05)',
-                    }}
-                  />
-                </Box>
-              </Box>
-              <BlogTags tags={['卵かけご飯']} marginTop={3} />
-              <Heading fontSize="xl" marginTop="2">
-                <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  卵かけご飯
-                </Text>
-              </Heading>
-              <Text as="p" fontSize="md" marginTop="2">
-                卵かけご飯です。美味しいです。
-              </Text>
-            </Box>
-
-            <Box className="mx-8" w="100%">
-              <Box borderRadius="lg" overflow="hidden">
-                <Box textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  <Image
-                    transform="scale(1.0)"
-                    src={
-                      'https://www.sirogohan.com/_files/recipe/images/cha-han/cha-han9324.JPG'
-                    }
-                    alt="some text"
-                    objectFit="contain"
-                    width="100%"
-                    transition="0.3s ease-in-out"
-                    _hover={{
-                      transform: 'scale(1.05)',
-                    }}
-                  />
-                </Box>
-              </Box>
-              <BlogTags tags={['炒飯']} marginTop={3} />
-              <Heading fontSize="xl" marginTop="2">
-                <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  チャーハン
-                </Text>
-              </Heading>
-              <Text as="p" fontSize="md" marginTop="2">
-               シンプルな炒飯です
-              </Text>
-            </Box>
-
-            <Box className="mx-8" w="100%">
-              <Box borderRadius="lg" overflow="hidden">
-                <Box textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  <Image
-                    transform="scale(1.0)"
-                    src={
-                     'https://www.kamada.co.jp/storage/images/cfiles/121/mX8THkcauOjgn9HLGxPRyafYI0tO1IqmMySlcaTe_1024.jpg'
-                    }
-                    alt="some text"
-                    objectFit="contain"
-                    width="100%"
-                    transition="0.3s ease-in-out"
-                    _hover={{
-                      transform: 'scale(1.05)',
-                    }}
-                  />
-                </Box>
-              </Box>
-              <BlogTags tags={['ラーメン']} marginTop={3} />
-              <Heading fontSize="xl" marginTop="2">
-                <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  ラーメン
-                </Text>
-              </Heading>
-              <Text as="p" fontSize="md" marginTop="2">
-                美味しいラーメン
-              </Text>
-            </Box>
-          </WrapItem>
-        </Wrap>
-        <div className="flex justify-center my-10">
-          <Button
-            as={NextLink}
-            fontSize="sm"
-            fontWeight={600}
-            color="white"
-            bg="orange.400"
-            href="/user/ranking"
-            _hover={{
-              bg: 'orange.300',
-            }}
-            className="w-1/3">
-            ランキングへ
-          </Button>
-        </div>
-
-        <Heading paddingTop="80px" as="h2" marginTop="5">
           今日の学食
         </Heading>
         <Divider marginTop="5" />
@@ -322,21 +213,22 @@ const Home = (props: {posts: Post[] | null}) => {
           <Image
             transform="scale(1.0)"
             src={
-              'https://firebasestorage.googleapis.com/v0/b/cafeteria-fa0bf.appspot.com/o/%E3%82%B9%E3%82%AF[…]?alt=media&token=e8f5da2e-bb7d-41ba-8831-36dce3b3ed9a'
+              'https://firebasestorage.googleapis.com/v0/b/cafeteria-fa0bf.appspot.com/o/kyounogakusyoku.png?alt=media&token=a3a8103d-874c-4132-9fe5-d54c96fa6b7c'
             }
             alt="some text"
             objectFit="contain"
-            width="30%"
+            width="40%"
             transition="0.3s ease-in-out"
             _hover={{
               transform: 'scale(1.05)',
             }}
           />
-          <Text as="p" fontSize="lg">
-            今日食べたいものを検索
-          </Text>
         </Wrap>
-        <div className="flex justify-center my-10">
+        <div className="flex-col  flex items-center justify-center my-10 mx-auto w-full gap-3">
+          <Text as="p" fontSize="lg">
+            今日食べたいものを検索{' '}
+            <AiOutlineArrowDown className="inline-block ml-2" />
+          </Text>
           <Button
             as={NextLink}
             fontSize="sm"
@@ -363,9 +255,7 @@ const Home = (props: {posts: Post[] | null}) => {
                 <Box textDecoration="none" _hover={{textDecoration: 'none'}}>
                   <Image
                     transform="scale(1.0)"
-                    src={
-                      'https://cdn.sbfoods.co.jp/recipes/05225_l.jpg'
-                    }
+                    src={'https://cdn.sbfoods.co.jp/recipes/05225_l.jpg'}
                     alt="some text"
                     objectFit="contain"
                     width="100%"
