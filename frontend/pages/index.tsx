@@ -72,6 +72,7 @@ const Home = (props: {posts: Post[]}) => {
   if (posts === null) {
     return;
   }
+  const color = useColorModeValue('gray.700', 'gray.200');
   return (
     <Layout>
       <div className="bg-[url('/cafe.jpg')] bg-cover h-96 bg-fixed bg-center">
@@ -200,11 +201,7 @@ const Home = (props: {posts: Post[]}) => {
                 Blog article title
               </Text>
             </Heading>
-            <Text
-              as="p"
-              marginTop="2"
-              color={useColorModeValue('gray.700', 'gray.200')}
-              fontSize="lg">
+            <Text as="p" marginTop="2" color={color} fontSize="lg">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry&apos;s standard dummy
               text ever since the 1500s, when an unknown printer took a galley
