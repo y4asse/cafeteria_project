@@ -44,7 +44,11 @@ export default function Header() {
           backgroundColor="#FBCF86">
           <Flex flex={1} justify="space-between" maxW="5xl" mx="auto">
             <Heading as="h1" size="lg" className="flex">
-              <img src="images/piyo.png" alt="piyo" width={40} />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/cafeteria-fa0bf.appspot.com/o/_2722c799-701c-43a9-8f53-a02355c600d4-removebg-preview.png?alt=media&token=a05ce4f7-8ef3-4146-9a62-3e207e21e3d7"
+                alt="piyo"
+                width={40}
+              />
               <NextLink href="/">Cafeteria_Database</NextLink>
             </Heading>
 
