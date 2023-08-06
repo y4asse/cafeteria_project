@@ -21,6 +21,7 @@ import {Button} from '@chakra-ui/react';
 import NextLink from 'next/link';
 import {getAllPosts} from '../utils/api';
 import {BiSearch} from 'react-icons/bi';
+import Post from './posts/[id]';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -64,8 +65,7 @@ interface BlogAuthorProps {
   name: string;
 }
 
-
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const posts = await getAllPosts();
   return {
     props: {
@@ -75,12 +75,12 @@ export async function getStaticProps() {
 }
 
 // とってきたデータをforloopで処理する
-const Home = (props: any) => {
+const Home = (props: {posts: Post[] | null}) => {
   const {posts} = props;
   // ランダムに5個の投稿を取得
   const randomPosts = shuffleArray(posts).slice(0, 5);
   const randomPosts1 = shuffleArray(posts).slice(0, 1);
-
+  const color = useColorModeValue('gray.700', 'gray.200');
   return (
     <Layout>
       <div className="bg-[url('/cafe.jpg')] bg-cover h-96 bg-fixed bg-center">
@@ -114,7 +114,8 @@ const Home = (props: any) => {
           <div className="d-demo">
             <div className="d-demo__wrap">
               <ul className="d-demo__list d-demo__list--left">
-                {randomPosts.map((post: any) => (
+                {randomPosts &&
+                  randomPosts.map((post: any) =>(
                   <li className="mx-4 d-demo__item" key={post.id}>
                     <NextLink href={`/posts/${post.id}`}>
                       <Image src={post.picture} alt="準備中" />
@@ -123,10 +124,11 @@ const Home = (props: any) => {
                 ))}
               </ul>
               <ul className="d-demo__list d-demo__list--left">
-                {randomPosts.map((post: any) => (
+                {randomPosts &&
+                  randomPosts.map((post: any) =>(
                   <li className="mx-4 d-demo__item" key={post.id}>
                     <NextLink href={`/posts/${post.id}`}>
-                      <Image src={post.profileImageUrl} alt="準備中" />
+                      <Image src={post.picture} alt="準備中" />
                     </NextLink>
                   </li>
                 ))}
@@ -148,7 +150,6 @@ const Home = (props: any) => {
           アプリの主な機能は、投稿機能やリアクション機能、検索機能などユーザー同士でのコミュニケーション機能などが挙げられます。
           </Text>
         </VStack>
-
         {randomPosts1.map((post: any) => (
            <Box
            marginTop={{base: '1', sm: '5'}}
@@ -195,7 +196,7 @@ const Home = (props: any) => {
              <Text
                as="p"
                marginTop="2"
-               color={useColorModeValue('gray.700', 'gray.200')}
+               color={color}
                fontSize="lg">
                {post.description}
              </Text>
