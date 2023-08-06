@@ -22,7 +22,6 @@ import NextLink from 'next/link';
 import {getAllPosts} from '../utils/api';
 import {BiSearch} from 'react-icons/bi';
 import Post from './posts/[id]';
-import {AiOutlineArrowDown} from 'react-icons/ai';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -34,6 +33,7 @@ interface Props {
   tags: any[];
 }
 
+// ランダムな順番で配列を並び替える関数
 function shuffleArray(array: any) {
   const shuffledArray = array.slice();
   for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -76,6 +76,7 @@ export async function getServerSideProps() {
 // とってきたデータをforloopで処理する
 const Home = (props: {posts: Post[] | null}) => {
   const {posts} = props;
+  // ランダムに5個の投稿を取得
   const randomPosts = shuffleArray(posts).slice(0, 5);
   const randomPosts1 = shuffleArray(posts).slice(0, 1);
   const color = useColorModeValue('gray.700', 'gray.200');
@@ -103,41 +104,38 @@ const Home = (props: {posts: Post[] | null}) => {
           </Button>
         </div>
       </div>
+      <Container maxW={'7xl'} p="10">
+        {/* スライドでいろんな学食風景を */}
 
-      {/* スライドでいろんな学食風景を */}
-      <Box
-        paddingTop="40px"
-        className="flex justify-center m-10 overflow-hidden">
-        <div className="d-demo">
-          <div className="d-demo__wrap">
-            <ul className="d-demo__list d-demo__list--left">
-              {posts &&
-                posts.map((post: any) => (
-                  <li className="mx-4 d-demo__item" key={post.id}>
-                    <NextLink href={`/posts/${post.id}`}>
-                      <Image width={200} src={post.picture} alt="準備中" />
-                      <span className="text-xl">{post.title}</span>
-                    </NextLink>
-                  </li>
-                ))}
-            </ul>
-            <ul className="d-demo__list d-demo__list--left">
-              {posts &&
-                posts.map((post: any) => (
-                  <li className="mx-4 d-demo__item" key={post.id}>
-                    <NextLink href={`/posts/${post.id}`}>
-                      <Image width={200} src={post.picture} alt="準備中" />
-                      <span>{post.title}</span>
-                    </NextLink>
-                  </li>
-                ))}
-            </ul>
+        <Box
+          paddingTop="40px"
+          className="flex justify-center mb-10 overflow-hidden">
+          <div className="d-demo">
+            <div className="d-demo__wrap">
+              <ul className="d-demo__list d-demo__list--left">
+                {randomPosts &&
+                  randomPosts.map((post: any) => (
+                    <li className="mx-4 d-demo__item" key={post.id}>
+                      <NextLink href={`/posts/${post.id}`}>
+                        <Image src={post.picture} alt="準備中" />
+                      </NextLink>
+                    </li>
+                  ))}
+              </ul>
+              <ul className="d-demo__list d-demo__list--left">
+                {randomPosts &&
+                  randomPosts.map((post: any) => (
+                    <li className="mx-4 d-demo__item" key={post.id}>
+                      <NextLink href={`/posts/${post.id}`}>
+                        <Image src={post.picture} alt="準備中" />
+                      </NextLink>
+                    </li>
+                  ))}
+              </ul>
+            </div>
           </div>
-        </div>
-      </Box>
+        </Box>
 
-      {/* 説明 */}
-      <Container maxW={'7xl'} px="10">
         <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
           <Heading className="my-8" as="h2">
             Cafeteria_Databaseとは
@@ -151,58 +149,109 @@ const Home = (props: {posts: Post[] | null}) => {
             アプリの主な機能は、投稿機能やリアクション機能、検索機能などユーザー同士でのコミュニケーション機能などが挙げられます。
           </Text>
         </VStack>
-
-        <Box
-          marginTop={{base: '1', sm: '5'}}
-          display="flex"
-          flexDirection={{base: 'column', sm: 'row'}}
-          justifyContent="space-between">
+        {randomPosts1.map((post: any) => (
           <Box
+            marginTop={{base: '1', sm: '5'}}
             display="flex"
-            flex="1"
-            marginRight="3"
-            position="relative"
-            alignItems="center">
+            flexDirection={{base: 'column', sm: 'row'}}
+            justifyContent="space-between"
+            key={post.id}>
             <Box
-              width={{base: '100%', sm: '85%'}}
-              zIndex="2"
-              marginLeft={{base: '0', sm: '5%'}}
-              marginTop="5%">
-              <Box textDecoration="none" _hover={{textDecoration: 'none'}}>
-                <Image
-                  borderRadius="lg"
-                  src={
-                    posts
-                      ? posts[0].picture
-                      : 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                  }
-                  alt="some good alt text"
-                  objectFit="contain"
-                />
+              display="flex"
+              flex="1"
+              marginRight="3"
+              position="relative"
+              alignItems="center">
+              <Box
+                width={{base: '100%', sm: '85%'}}
+                zIndex="2"
+                marginLeft={{base: '0', sm: '5%'}}
+                marginTop="5%">
+                <Box textDecoration="none" _hover={{textDecoration: 'none'}}>
+                  <Image
+                    borderRadius="lg"
+                    src={post.picture}
+                    alt="some good alt text"
+                    objectFit="contain"
+                  />
+                </Box>
+              </Box>
+              <Box zIndex="1" width="100%" position="absolute" height="100%">
+                <Box backgroundSize="20px 20px" opacity="0.4" height="100%" />
               </Box>
             </Box>
-            <Box zIndex="1" width="100%" position="absolute" height="100%">
-              <Box backgroundSize="20px 20px" opacity="0.4" height="100%" />
+
+            <Box
+              display="flex"
+              flex="1"
+              flexDirection="column"
+              justifyContent="center"
+              marginTop={{base: '3', sm: '0'}}>
+              <BlogTags tags={['Engineering', 'Product']} />
+              <Heading marginTop="1">
+                <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
+                  {post.title}
+                </Text>
+              </Heading>
+              <Text as="p" marginTop="2" color={color} fontSize="lg">
+                {post.description}
+              </Text>
             </Box>
           </Box>
+        ))}
 
-          <Box
-            display="flex"
-            flex="1"
-            flexDirection="column"
-            justifyContent="center"
-            marginTop={{base: '3', sm: '0'}}>
-            <BlogTags tags={['Engineering', 'Product']} />
-            <Heading marginTop="1">
-              <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
-                {posts && posts[0].title}
-              </Text>
-            </Heading>
-            <Text as="p" marginTop="2" color={color} fontSize="lg">
-              {posts && posts[0].description}
-            </Text>
-          </Box>
-        </Box>
+        <Heading paddingTop="80px" as="h2" marginTop="5">
+          ランキング
+        </Heading>
+        <Divider marginTop="5" />
+
+        <Wrap spacing="30px" marginTop="5">
+          <WrapItem width={{base: '100%', sm: '45%', md: '45%', lg: '30%'}}>
+            {randomPosts.map((post: any) => (
+              <Box className="mx-8" w="100%" key={post.id}>
+                <Box borderRadius="lg" overflow="hidden">
+                  <Box textDecoration="none" _hover={{textDecoration: 'none'}}>
+                    <Image
+                      transform="scale(1.0)"
+                      src={post.picture}
+                      alt="some text"
+                      objectFit="contain"
+                      width="100%"
+                      transition="0.3s ease-in-out"
+                      _hover={{
+                        transform: 'scale(1.05)',
+                      }}
+                    />
+                  </Box>
+                </Box>
+                <BlogTags tags={['Engineering', 'Product']} marginTop={3} />
+                <Heading fontSize="xl" marginTop="2">
+                  <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
+                    {post.title}
+                  </Text>
+                </Heading>
+                <Text as="p" fontSize="md" marginTop="2">
+                  {post.description}
+                </Text>
+              </Box>
+            ))}
+          </WrapItem>
+        </Wrap>
+        <div className="flex justify-center my-10">
+          <Button
+            as={NextLink}
+            fontSize="sm"
+            fontWeight={600}
+            color="white"
+            bg="orange.400"
+            href="/user/ranking"
+            _hover={{
+              bg: 'orange.300',
+            }}
+            className="w-1/3">
+            ランキングへ
+          </Button>
+        </div>
 
         <Heading paddingTop="80px" as="h2" marginTop="5">
           今日の学食
@@ -213,22 +262,26 @@ const Home = (props: {posts: Post[] | null}) => {
           <Image
             transform="scale(1.0)"
             src={
-              'https://firebasestorage.googleapis.com/v0/b/cafeteria-fa0bf.appspot.com/o/kyounogakusyoku.png?alt=media&token=a3a8103d-874c-4132-9fe5-d54c96fa6b7c'
+              ' https://4.bp.blogspot.com/-UAUlgNA_l8A/VpjFt3OS0wI/AAAAAAAA3IA/m2WCxFCKSG0/s800/syokudou_student.png'
             }
             alt="some text"
             objectFit="contain"
-            width="40%"
+            width="30%"
             transition="0.3s ease-in-out"
             _hover={{
               transform: 'scale(1.05)',
             }}
           />
-        </Wrap>
-        <div className="flex-col  flex items-center justify-center my-10 mx-auto w-full gap-3">
           <Text as="p" fontSize="lg">
-            今日食べたいものを検索{' '}
-            <AiOutlineArrowDown className="inline-block ml-2" />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            condimentum quam arcu, eu tempus tortor molestie at. Vestibulum
+            pretium condimentum dignissim. Vestibulum ultrices vitae nisi sed
+            imperdiet. Mauris quis erat consequat, commodo massa quis, feugiat
+            sapien. Suspendisse placerat vulputate posuere. Curabitur neque
+            tortor, mattis nec lacus non, placerat congue elit.
           </Text>
+        </Wrap>
+        <div className="flex justify-center my-10">
           <Button
             as={NextLink}
             fontSize="sm"
@@ -255,7 +308,9 @@ const Home = (props: {posts: Post[] | null}) => {
                 <Box textDecoration="none" _hover={{textDecoration: 'none'}}>
                   <Image
                     transform="scale(1.0)"
-                    src={'https://cdn.sbfoods.co.jp/recipes/05225_l.jpg'}
+                    src={
+                      'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                    }
                     alt="some text"
                     objectFit="contain"
                     width="100%"
@@ -269,11 +324,12 @@ const Home = (props: {posts: Post[] | null}) => {
               <BlogTags tags={['Engineering', 'Product']} marginTop={3} />
               <Heading fontSize="xl" marginTop="2">
                 <Text textDecoration="none" _hover={{textDecoration: 'none'}}>
-                  キムチラーメン
+                  Some blog title
                 </Text>
               </Heading>
               <Text as="p" fontSize="md" marginTop="2">
-                日本大学のキムチラーメンです
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry.
               </Text>
             </Box>
           </WrapItem>
