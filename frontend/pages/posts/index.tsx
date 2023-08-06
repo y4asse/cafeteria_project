@@ -25,6 +25,7 @@ const Posts = (props: {posts: Post[] | null}) => {
           posts.map((post) => {
             return (
               <div
+                key={post.id}
                 className="flex-coljustify-center items-center m-10 border-2 border-gray-400 rounded-2xl shadow-2xl p-3 cursor-pointer"
                 onClick={() => {
                   router.push(`/posts/${post.id}`);
