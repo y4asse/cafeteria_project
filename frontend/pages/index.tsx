@@ -54,7 +54,7 @@ interface BlogAuthorProps {
   name: string;
 }
 
-export async function getServersideProps() {
+export async function getServerSideProps() {
   const posts = await getAllPosts();
   return {
     props: {
@@ -67,9 +67,6 @@ export async function getServersideProps() {
 const Home = (props: {posts: Post[] | null}) => {
   const {posts} = props;
   const color = useColorModeValue('gray.700', 'gray.200');
-  if (!posts) {
-    return;
-  }
   return (
     <Layout>
       <div className="bg-[url('/cafe.jpg')] bg-cover h-96 bg-fixed bg-center">
@@ -103,22 +100,24 @@ const Home = (props: {posts: Post[] | null}) => {
           <div className="d-demo">
             <div className="d-demo__wrap">
               <ul className="d-demo__list d-demo__list--left">
-                {posts.map((post: any) => (
-                  <li className="mx-4 d-demo__item" key={post.id}>
-                    <NextLink href={`/posts/${post.id}`}>
-                      <Image src={post.picture} alt="準備中" />
-                    </NextLink>
-                  </li>
-                ))}
+                {posts &&
+                  posts.map((post: any) => (
+                    <li className="mx-4 d-demo__item" key={post.id}>
+                      <NextLink href={`/posts/${post.id}`}>
+                        <Image src={post.picture} alt="準備中" />
+                      </NextLink>
+                    </li>
+                  ))}
               </ul>
               <ul className="d-demo__list d-demo__list--left">
-                {posts.map((post: any) => (
-                  <li className="mx-4 d-demo__item" key={post.id}>
-                    <NextLink href={`/posts/${post.id}`}>
-                      <Image src={post.profileImageUrl} alt="準備中" />
-                    </NextLink>
-                  </li>
-                ))}
+                {posts &&
+                  posts.map((post: any) => (
+                    <li className="mx-4 d-demo__item" key={post.id}>
+                      <NextLink href={`/posts/${post.id}`}>
+                        <Image src={post.profileImageUrl} alt="準備中" />
+                      </NextLink>
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>
