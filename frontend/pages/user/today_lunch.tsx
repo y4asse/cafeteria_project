@@ -29,11 +29,12 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import Post from '../posts/[id]';
 
 export default function Search() {
   const [universityName, setUniversityName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [postData, setPostData] = useState([]);
+  const [postData, setPostData] = useState<Post[] | null>(null);
 
   useEffect(() => {}, [postData]);
 
@@ -87,7 +88,7 @@ export default function Search() {
         </ButtonGroup>
       </Box>
 
-      {postData.length > 0 ? (
+      {postData &&
         postData.map((post) => (
           <div
             className="border-2 border-black p-5 flex gap-3 shadow-lg my-5 mb-10 mx-24 rounded-xl"
@@ -106,10 +107,7 @@ export default function Search() {
               <p className="font-bold">ここから詳細を見る</p>
             </NextLink>
           </div>
-        ))
-      ) : (
-        <p></p>
-      )}
+        ))}
       <div className="flex justify-center my-10">
         <Button
           as={NextLink}
